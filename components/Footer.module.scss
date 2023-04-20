@@ -1,0 +1,15 @@
+.footer {
+  background-image: linear-gradient(135deg, #e95095, #7049ba);
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+}
