@@ -1,4 +1,3 @@
-// api.ts
 export interface Artifact {
   id: string;
   title: string;

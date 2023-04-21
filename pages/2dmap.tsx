@@ -1,13 +1,13 @@
-import { Inter } from 'next/font/google';
+import React from 'react';
 import Footer from '../components/Footer';
+import Map from '../components/Map';
 import Navbar from '../components/Navbar';
 
-const inter = Inter({ subsets: ['latin'] });
-
-export default function Map() {
+export default function twoMap() {
   return (
     <>
       <Navbar />
+      <Map />
       <Footer />
     </>
   );

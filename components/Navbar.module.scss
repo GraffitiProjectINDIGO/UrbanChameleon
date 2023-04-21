@@ -1,9 +1,13 @@
 .navbar {
   display: flex;
   align-items: center;
+  position: fixed;
   justify-content: space-between;
   background-image: linear-gradient(135deg, #e95095, #7049ba);
   padding: 1rem;
+  height: 50px;
+  z-index: 111;
+  width: 100%;
 }
 
 .brand {

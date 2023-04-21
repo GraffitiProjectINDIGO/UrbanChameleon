@@ -1,12 +1,10 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Inter } from 'next/font/google';
-import Image from 'next/image';
+import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { Artifact, getArtifactsData } from '../components/api';
 import Footer from '../components/Footer';
+import LogosGrid from '../components/LogosGrid';
 import Navbar from '../components/Navbar';
-
-const inter = Inter({ subsets: ['latin'] });
 
 interface HomeProps {
   artifacts: Artifact[];
@@ -16,7 +14,20 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
   return (
     <>
       <Navbar />
-      {/* Add the Carousel component */}
+      <div>
+        <div>
+          <p>
+            graffiti makes people laugh, wonder, angry, think
+            <br />
+            graffiti is a <span style={{ color: '#f1881f' }}>
+              unique
+            </span> | <span style={{ color: '#0dace5' }}>complex</span> |{' '}
+            <span style={{ color: '#d2145c' }}>short-lived</span> |{' '}
+            <span style={{ color: '#270089' }}>socially relevant</span> form of
+            cultural heritage
+          </p>
+        </div>
+      </div>
       <Carousel>
         {artifacts &&
           artifacts.map((artifact) => (
@@ -31,7 +42,7 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
             </div>
           ))}
       </Carousel>
-      {/* Rest of the code */}
+      <LogosGrid />
       <Footer />
     </>
   );
@@ -39,13 +50,14 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
 
 export default Home;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const artifacts = await getArtifactsData();
     return {
       props: {
         artifacts,
       },
+      revalidate: 60, // Optional: Time in seconds after which a page re-generation can occur (in this case, 60 seconds)
     };
   } catch (error) {
     console.error('Error fetching artifacts data:', error);
@@ -53,6 +65,7 @@ export async function getServerSideProps() {
       props: {
         artifacts: [],
       },
+      revalidate: 60,
     };
   }
 }

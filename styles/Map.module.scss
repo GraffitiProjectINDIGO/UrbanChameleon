@@ -1,0 +1,123 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+
+  html,
+  body,
+  #root,
+  .App,
+  #mapId {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #mapId {
+    height: 100%;
+    pointer-events: auto;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    pointer-events: none; /* Allow mouse interactions to pass through */
+  }
+
+  #snapshot-button {
+    z-index: 10000;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 2em;
+  }
+
+  .selected-artifact {
+    position: fixed;
+    top: 10%; /* Adjust top and left to center the overlay */
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: auto;
+    background-color: white;
+    padding: 30px; /* Increase padding to make the overlay bigger */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 80%; /* Increase width and height to make the overlay bigger */
+    height: 80%;
+  }
+
+  .selected-artifact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .selected-artifact-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .selected-artifact-close-button {
+    border: none;
+    background-color: white;
+    color: black;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .selected-artifact h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .selected-artifact p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .selected-artifact img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  button {
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    border: none;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #555555;
+
+    &:hover {
+      box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+        0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+  }
+}
+
+.selectedArtifactTitle {
+  background-color: yellow;
+  color: black;
+  font-size: 20px;
+  padding: 10px;
+}

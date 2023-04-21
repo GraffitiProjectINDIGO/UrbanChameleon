@@ -1,14 +1,11 @@
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
-import { Inter } from 'next/font/google';
 import React from 'react';
 import { Artifact, getArtifactsData } from '../components/api';
 import { EyeIcon } from '../components/EyeIcon';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-
-const inter = Inter({ subsets: ['latin'] });
 
 interface TablePageProps {
   artifacts: Artifact[];
@@ -71,13 +68,14 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
 
 export default TablePage;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const artifacts = await getArtifactsData();
     return {
       props: {
         artifacts,
       },
+      revalidate: 60, // Optional: Time in seconds after which a page re-generation can occur (in this case, 60 seconds)
     };
   } catch (error) {
     console.error('Error fetching artifacts data:', error);
@@ -85,6 +83,7 @@ export async function getServerSideProps() {
       props: {
         artifacts: [],
       },
+      revalidate: 60,
     };
   }
 }
