@@ -13,15 +13,15 @@ import {
 import styles from '../styles/Map.module.scss';
 
 interface Artifact {
-  id: number;
+  id: string;
   title: string;
   imageUrl: string;
-  latitude: number;
-  longitude: number;
+  latitude: number | null;
+  longitude: number | null;
 }
 
 interface MapProps {
-  artifacts: Artifact[];
+  artifacts: Artifact[]; // Add a prop type for the artifacts array
 }
 
 const MapWithNoSSR = dynamic(
@@ -36,21 +36,25 @@ const MapWithNoSSR = dynamic(
   { ssr: false },
 );
 
-const Map: React.FC<MapProps> = ({ artifacts }) => {
+const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
   const [MarkerIcon, setMarkerIcon] = useState<L.Icon>();
 
   useEffect(() => {
+    console.log('Map component mounted');
     import('leaflet').then((L) => {
       const markerIcon = L.icon({
-        iconUrl: 'marker-icon.png',
+        iconUrl:
+          'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
         tooltipAnchor: [16, -28],
-        shadowUrl: 'marker-shadow.png',
+        shadowUrl:
+          'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
         shadowSize: [41, 41],
         shadowAnchor: [12, 41],
       });
+
       setMarkerIcon(markerIcon);
     });
   }, []);
@@ -60,66 +64,74 @@ const Map: React.FC<MapProps> = ({ artifacts }) => {
   }
 
   return (
-    <MapWithNoSSR
-      doubleClickZoom={true}
-      id="mapId"
-      zoom={14}
-      center={[48.217, 16.3727]}
-      preferCanvas={true}
-    >
-      <LayersControl collapsed={false}>
-        <LayersControl.BaseLayer checked name="ESRI grey">
-          <TileLayer
-            url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-            attribution="Tiles &copy; Esri"
-          />
-        </LayersControl.BaseLayer>
-        <LayersControl.BaseLayer checked name="OpenStreetMap">
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="Tiles"
-          />
-        </LayersControl.BaseLayer>
-        <LayersControl.Overlay checked name="Graffiti marker">
-          <LayerGroup>
-            {artifacts.map((artifact) => (
-              <Marker
-                key={artifact.id}
-                position={[artifact.latitude, artifact.longitude]}
-                icon={MarkerIcon}
-              >
-                <Popup>
-                  <h2 className={styles.selectedArtifactTitle}>
-                    {artifact.title ?? ''}
-                  </h2>
-                  <img
-                    src={artifact.imageUrl}
-                    alt={artifact.title}
-                    width={250}
-                  />
-                  <button
-                    className="button"
-                    onClick={() => console.log('More details clicked')}
-                  >
-                    More details
-                  </button>
-                </Popup>
-                <Tooltip direction="top" opacity={1} sticky>
-                  <img
-                    src={
-                      artifact.imageUrl.split(/".png"| ".jpg"/)[0] +
-                      '?image_size=table'
-                    }
-                    alt={artifact.title}
-                    width={50}
-                  />
-                </Tooltip>
-              </Marker>
-            ))}
-          </LayerGroup>
-        </LayersControl.Overlay>
-      </LayersControl>
-    </MapWithNoSSR>
+    <>
+      <MapContainer
+        doubleClickZoom={true}
+        id="mapId"
+        zoom={14}
+        center={[48.217, 16.3727]}
+        preferCanvas={true}
+        style={{ marginTop: '20rem', height: '500px', width: '100%' }}
+      >
+        <LayersControl collapsed={false}>
+          <LayersControl.BaseLayer checked name="ESRI grey">
+            <TileLayer
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+              attribution="Tiles &copy; Esri"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer checked name="OpenStreetMap">
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="Tiles"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.Overlay checked name="Graffiti marker">
+            <LayerGroup>
+              {artifacts.map((artifact) => {
+                if (artifact.latitude !== null && artifact.longitude !== null) {
+                  return (
+                    <Marker
+                      key={artifact.id}
+                      position={[artifact.latitude, artifact.longitude]}
+                      icon={MarkerIcon}
+                    >
+                      <Popup>
+                        <h2 className={styles.selectedArtifactTitle}>
+                          {artifact.title ?? ''}
+                        </h2>
+                        <img
+                          src={artifact.imageUrl}
+                          alt={artifact.title}
+                          width={250}
+                        />
+                        <button
+                          className="button"
+                          onClick={() => console.log('More details clicked')}
+                        >
+                          More details
+                        </button>
+                      </Popup>
+                      <Tooltip direction="top" opacity={1} sticky>
+                        <img
+                          src={
+                            artifact.imageUrl.split(/".png"| ".jpg"/)[0] +
+                            '?image_size=table'
+                          }
+                          alt={artifact.title}
+                          width={50}
+                        />
+                      </Tooltip>
+                    </Marker>
+                  );
+                }
+                return null;
+              })}
+            </LayerGroup>
+          </LayersControl.Overlay>
+        </LayersControl>
+      </MapContainer>
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ export async function getArtifactsData(): Promise<Artifact[]> {
       }
 
       return {
-        id: feature['@id'].split('/').pop(),
+        id: feature['@id'],
         title: feature.properties.title || '',
         description: feature.properties.description || '',
         imageUrl: feature.depictions?.[0]?.url || '',
