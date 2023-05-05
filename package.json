@@ -9,6 +9,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@nextui-org/react": "1.0.0-beta.12",
     "@types/node": "18.16.1",
     "@types/react": "18.2.0",

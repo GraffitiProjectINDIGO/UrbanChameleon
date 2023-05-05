@@ -19,3 +19,62 @@
 .logosGrid {
   grid-column: 1 / -1;
 }
+
+.iconTextContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.description {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 18px;
+  grid-column: 1 / -1;
+}
+
+.iconText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+  font-size: 24px;
+  position: relative;
+
+}
+
+.iconText::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  clip-path: inset(0 0% 0 0);
+  transition: clip-path 0.3s;
+}
+
+.iconText:hover::before {
+  clip-path: inset(0 0 0 0);
+}
+
+.iconText p {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .iconTextContainer {
+    flex-direction: row;
+
+  }
+}
+
+
+.iconText svg {
+  font-size: 48px;
+}
