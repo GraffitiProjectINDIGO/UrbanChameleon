@@ -5,6 +5,7 @@ import { Artifact, getArtifactsData } from '../components/api';
 import Footer from '../components/Footer';
 import LogosGrid from '../components/LogosGrid';
 import Navbar from '../components/Navbar';
+import styles from './styles.module.scss';
 
 interface HomeProps {
   artifacts: Artifact[];
@@ -14,9 +15,9 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
   return (
     <>
       <Navbar />
-      <div>
-        <div>
-          <p>
+      <div className={styles.container}>
+        <div className={styles.title}>
+          <p style={{ fontSize: 40 }}>
             graffiti makes people laugh, wonder, angry, think
             <br />
             graffiti is a <span style={{ color: '#f1881f' }}>
@@ -27,22 +28,33 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
             cultural heritage
           </p>
         </div>
+        <div className={styles.carousel}>
+          <Carousel
+            showArrows
+            swipeable
+            centerMode
+            centerSlidePercentage={50}
+            showThumbs={true}
+            showIndicators={false}
+          >
+            {artifacts &&
+              artifacts.map((artifact) => (
+                <div key={artifact.id}>
+                  {artifact.imageUrl && (
+                    <img
+                      src={artifact.imageUrl}
+                      alt={artifact.title}
+                      style={{ maxWidth: '100%', height: 'auto' }}
+                    />
+                  )}
+                </div>
+              ))}
+          </Carousel>
+        </div>
+        <div className="logosGrid">
+          <LogosGrid />
+        </div>
       </div>
-      <Carousel>
-        {artifacts &&
-          artifacts.map((artifact) => (
-            <div key={artifact.id}>
-              {artifact.imageUrl && (
-                <img
-                  src={artifact.imageUrl}
-                  alt={artifact.title}
-                  style={{ maxWidth: '100%', height: 'auto' }}
-                />
-              )}
-            </div>
-          ))}
-      </Carousel>
-      <LogosGrid />
       <Footer />
     </>
   );
