@@ -16,22 +16,19 @@
   grid-column: 1 / -1;
 }
 
-.logosGrid {
-  grid-column: 1 / -1;
-}
 
 .iconTextContainer {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  text-align: center;
   grid-column: 1 / -1;
+  margin-bottom: 30px;
 }
 
 .description {
   margin-bottom: 20px;
   text-align: center;
-  font-size: 18px;
+  font-size: 24px;
   grid-column: 1 / -1;
 }
 
@@ -74,7 +71,17 @@
   }
 }
 
-
 .iconText svg {
   font-size: 48px;
+}
+.carousel .thumbs-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.carousel .thumb {
+  border: none !important;
 }
