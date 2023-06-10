@@ -1,14 +1,13 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import {
-  faClock,
-  faLayerGroup,
-  faMapMarkerAlt,
-  faPalette,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import React from 'react';
+
 import { Carousel } from 'react-responsive-carousel';
-import { Artifact, getArtifactsData } from '../components/api';
+
+import {
+  Artifact,
+  getArtifactsData,
+} from '../components/api';
 import Footer from '../components/Footer';
 import LogosGrid from '../components/LogosGrid';
 import Navbar from '../components/Navbar';
@@ -181,6 +180,7 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
             showThumbs={true}
             showIndicators={false}
             infiniteLoop={true}
+            className="my-carousel"
           >
             {artifacts &&
               artifacts.map((artifact) => (

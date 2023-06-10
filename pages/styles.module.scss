@@ -16,6 +16,18 @@
   grid-column: 1 / -1;
 }
 
+.my-carousel {
+  width: 50%; 
+  height: 300px; 
+  margin: 0 auto; 
+}
+
+.my-carousel img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 
 .iconTextContainer {
   display: flex;
