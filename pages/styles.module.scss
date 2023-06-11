@@ -14,18 +14,26 @@
 
 .carousel {
   grid-column: 1 / -1;
-}
 
-.my-carousel {
-  width: 50%; 
-  height: 300px; 
-  margin: 0 auto; 
-}
+  &.my-carousel {
+    width: 50%; 
+    height: 300px; 
+    margin: 0 auto; 
+  }
 
-.my-carousel img {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  img {
+    max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  }
+
+  .slide {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  }
+  
 }
 
 
@@ -86,14 +94,21 @@
 .iconText svg {
   font-size: 48px;
 }
-.carousel .thumbs-wrapper {
+
+.carouselImageContainer {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  height: 300px; // Adjust this value to your needs
+}
+
+.carouselImage {
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .carousel .thumb {
-  border: none !important;
+  border-color: none !important;
+  float: left !important;
 }
+

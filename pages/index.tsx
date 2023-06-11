@@ -12,7 +12,7 @@ import Footer from '../components/Footer';
 import LogosGrid from '../components/LogosGrid';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
-
+import ThemeSwitcher from '../components/ThemeSwitcher.tsx'
 interface HomeProps {
   artifacts: Artifact[];
 }
@@ -21,6 +21,8 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
   return (
     <>
       <Navbar />
+      <div><ThemeSwitcher /></div>
+      
       <div className={styles.container}>
         <div className={styles.title}>
           <p style={{ fontSize: 40 }}>
@@ -181,18 +183,20 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
             showIndicators={false}
             infiniteLoop={true}
             className="my-carousel"
+            
           >
             {artifacts &&
               artifacts.map((artifact) => (
-                <div key={artifact.id}>
-                  {artifact.imageUrl && (
-                    <img
-                      src={artifact.imageUrl}
-                      alt={artifact.title}
-                      style={{ maxWidth: '100%', height: 'auto' }}
-                    />
-                  )}
-                </div>
+                <div key={artifact.id} className={styles.carouselImageContainer}>
+                {artifact.imageUrl && (
+                  <img
+                    src={artifact.imageUrl}
+                    alt={artifact.title}
+                    className={styles.carouselImage}
+                  />
+                )}
+              </div>
+              
               ))}
           </Carousel>
         </div>
