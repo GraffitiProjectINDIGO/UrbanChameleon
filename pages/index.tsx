@@ -12,7 +12,7 @@ import Footer from '../components/Footer';
 import LogosGrid from '../components/LogosGrid';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
-import ThemeSwitcher from '../components/ThemeSwitcher.tsx'
+import ThemeSwitcher from '../components/ThemeSwitcher'
 interface HomeProps {
   artifacts: Artifact[];
 }
