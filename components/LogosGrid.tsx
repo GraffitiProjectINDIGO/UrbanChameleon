@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Grid = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
   grid-gap: 20px;
   background-color: #f6f6f6;
   padding: 20px;
@@ -14,18 +14,17 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   img {
-    width: 100%; 
-    height: 80px;
+    width: 80%; 
+    height: 70px;
+    min-width: 100px;
     object-fit: contain;
   }
   @media (max-width: 768px) {
     img {
-      height: 50px; 
+      width: 60%;
     }
   }
 `;
-
-
 
 const LogosGrid: React.FC = () => {
   return (
