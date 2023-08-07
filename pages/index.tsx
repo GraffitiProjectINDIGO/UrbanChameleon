@@ -1,9 +1,6 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
 import React from 'react';
-
 import { Carousel } from 'react-responsive-carousel';
-
 import {
   Artifact,
   getArtifactsData,
@@ -13,17 +10,18 @@ import LogosGrid from '../components/LogosGrid';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
 import ThemeSwitcher from '../components/ThemeSwitcher'
+
 interface HomeProps {
   artifacts: Artifact[];
 }
 
 const Home: React.FC<HomeProps> = ({ artifacts }) => {
   return (
-    <>
-      <Navbar />
-      <div><ThemeSwitcher /></div>
-      
-      <div className={styles.container}>
+    <div className={styles.pageContainer}>
+      <div className={styles.contentWrap}>
+        <Navbar />
+        <div><ThemeSwitcher /></div>
+        <div className={styles.container}>
         <div className={styles.title}>
           <p style={{ fontSize: 40 }}>
             graffiti makes people laugh, wonder, angry, think
@@ -199,11 +197,13 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
               
               ))}
           </Carousel>
-        </div>
+          </div>
+          </div>
       </div>
-      <LogosGrid />
-      <Footer />
-    </>
+        <LogosGrid />
+        <Footer />
+     
+    </div>
   );
 };
 

@@ -3,6 +3,29 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
   padding: 20px;
+  flex: 1 0 auto;
+}
+
+.mainContainer {
+  display: flex;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contentWrap {
+  flex: 1;
+}
+
+.footer {
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
 }
 
 .title {
@@ -35,7 +58,6 @@
   }
   
 }
-
 
 .iconTextContainer {
   display: flex;
