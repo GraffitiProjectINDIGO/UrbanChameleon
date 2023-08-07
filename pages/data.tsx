@@ -12,14 +12,14 @@ interface TablePageProps {
 }
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 90 },
-  { field: 'title', headerName: 'Title', width: 150 },
-  { field: 'description', headerName: 'Description', width: 200 },
-  { field: 'types', headerName: 'Type', width: 150 },
+  { field: 'id', headerName: 'ID', flex: 1 },
+  { field: 'title', headerName: 'Title', flex: 1 },
+  { field: 'description', headerName: 'Description', flex: 1 },
+  { field: 'types', headerName: 'Type', flex: 1 },
   {
     field: 'imageUrl',
     headerName: 'Depiction',
-    width: 150,
+    flex: 1,
     renderCell: (params: GridCellParams) => (
       <img
         src={`${params.value}?image_size=table`}
@@ -28,12 +28,12 @@ const columns: GridColDef[] = [
       />
     ),
   },
-  { field: 'longitude', headerName: 'Longitude', width: 150 },
-  { field: 'latitude', headerName: 'Latitude', width: 150 },
+  { field: 'longitude', headerName: 'Longitude', flex: 1 },
+  { field: 'latitude', headerName: 'Latitude', flex: 1 },
   {
     field: 'details',
     headerName: 'Details',
-    width: 150,
+    flex: 1,
     renderCell: (params: GridCellParams) => (
       <Tooltip title="Details">
         <IconButton onClick={() => console.log('View artifact', params.row.id)}>
@@ -53,7 +53,7 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
     <>
       <Navbar />
       <h1>Table Page</h1>
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: 'calc(100vh - 100px)', width: '100%', paddingTop: '50px', paddingLeft: '10px', paddingRight: '10px' }}>
         <DataGrid
           rows={artifacts}
           columns={columns}
