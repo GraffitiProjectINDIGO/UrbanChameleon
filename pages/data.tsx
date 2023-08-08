@@ -6,6 +6,7 @@ import { Artifact, getArtifactsData } from '../components/api';
 import { EyeIcon } from '../components/EyeIcon';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import styles from './styles.module.scss';
 
 interface TablePageProps {
   artifacts: Artifact[];

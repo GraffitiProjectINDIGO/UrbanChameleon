@@ -12,6 +12,10 @@ import {
   useMap,
 } from 'react-leaflet';
 import styles from './Map.module.scss';
+import 'leaflet/dist/leaflet.css';
+import '@changey/react-leaflet-markercluster/dist/styles.min.css';
+import MarkerClusterGroup from '@changey/react-leaflet-markercluster';
+
 
 interface Artifact {
   id: string;
@@ -50,7 +54,6 @@ const MapPane = () => {
 
   return null;
 };
-
 
 const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
   const [MarkerIcon, setMarkerIcon] = useState<L.Icon>();
@@ -103,7 +106,7 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
             />
           </LayersControl.BaseLayer>
           <LayersControl.Overlay checked name="Graffiti marker">
-            <LayerGroup>
+            <MarkerClusterGroup>
               {artifacts.map((artifact) => {
                 if (artifact.latitude !== null && artifact.longitude !== null) {
                   return (
@@ -143,7 +146,7 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
                 }
                 return null;
               })}
-            </LayerGroup>
+            </MarkerClusterGroup>
           </LayersControl.Overlay>
         </LayersControl>
       </MapContainer>

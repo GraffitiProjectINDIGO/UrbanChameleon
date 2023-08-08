@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@changey/react-leaflet-markercluster": "4.0.0-rc1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -23,6 +24,7 @@
     "@zeit/next-css": "^1.0.1",
     "autoprefixer": "10.4.14",
     "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
     "mui": "^0.0.1",
     "next": "13.4.4",
     "next-themes": "^0.2.1",
@@ -30,6 +32,7 @@
     "react": "^18.2.0",
     "react-dom": "18.2.0",
     "react-leaflet": "^4.2.1",
+    "react-leaflet-markercluster": "3.0.0-rc1",
     "react-responsive-carousel": "^3.2.23",
     "sass": "^1.63.2",
     "styled-components": "6.0.0-rc.3",

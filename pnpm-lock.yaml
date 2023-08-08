@@ -1,6 +1,13 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
+  '@changey/react-leaflet-markercluster':
+    specifier: 4.0.0-rc1
+    version: 4.0.0-rc1(leaflet.markercluster@1.5.3)(leaflet@1.9.4)(react-dom@18.2.0)(react-leaflet@4.2.1)(react@18.2.0)
   '@emotion/react':
     specifier: ^11.11.1
     version: 11.11.1(@types/react@18.2.9)(react@18.2.0)
@@ -43,6 +50,9 @@ dependencies:
   leaflet:
     specifier: ^1.9.4
     version: 1.9.4
+  leaflet.markercluster:
+    specifier: ^1.5.3
+    version: 1.5.3(leaflet@1.9.4)
   mui:
     specifier: ^0.0.1
     version: 0.0.1
@@ -64,6 +74,9 @@ dependencies:
   react-leaflet:
     specifier: ^4.2.1
     version: 4.2.1(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0)
+  react-leaflet-markercluster:
+    specifier: 3.0.0-rc1
+    version: 3.0.0-rc1(leaflet.markercluster@1.5.3)(leaflet@1.9.4)(react-dom@18.2.0)(react-leaflet@4.2.1)(react@18.2.0)
   react-responsive-carousel:
     specifier: ^3.2.23
     version: 3.2.23
@@ -1356,6 +1369,22 @@ packages:
       '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
 
+  /@changey/react-leaflet-markercluster@4.0.0-rc1(leaflet.markercluster@1.5.3)(leaflet@1.9.4)(react-dom@18.2.0)(react-leaflet@4.2.1)(react@18.2.0):
+    resolution: {integrity: sha512-gS1lEQiQwyeI6Y6Wuxuqqffwywm7giQw4tbcqtJP8zyT5bc3AzW2/EVJGwWORYo/PLDdDnvOrpI+lUJy2UA5MQ==}
+    peerDependencies:
+      leaflet: ^1.8.0
+      leaflet.markercluster: ^1.5.3
+      react-leaflet: ^4.0.0
+    dependencies:
+      '@react-leaflet/core': 2.1.0(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0)
+      leaflet: 1.9.4
+      leaflet.markercluster: 1.5.3(leaflet@1.9.4)
+      react-leaflet: 4.2.1(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - react
+      - react-dom
+    dev: false
+
   /@emotion/babel-plugin@11.11.0:
     resolution: {integrity: sha512-m4HEDZleaaCH+XgDDsPF15Ht6wTLsgDTeR3WYj9Q/k76JtWhrJjcP4+/XlG8LGT/Rol9qUfOIztXeA84ATpqPQ==}
     dependencies:
@@ -2282,6 +2311,18 @@ packages:
       '@react-types/shared': 3.15.0(react@18.2.0)
       clsx: 1.2.1
       react: 18.2.0
+    dev: false
+
+  /@react-leaflet/core@1.1.1(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-7PGLWa9MZ5x/cWy8EH2VzI4T8q5WpuHbixzCDXqixP/WyqwIrg5NDUPgYuFnB4IEIZF+6nA265mYzswFo/h1Pw==}
+    peerDependencies:
+      leaflet: ^1.7.1
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      leaflet: 1.9.4
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@react-leaflet/core@2.1.0(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0):
@@ -4465,6 +4506,14 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
+  /leaflet.markercluster@1.5.3(leaflet@1.9.4):
+    resolution: {integrity: sha512-vPTw/Bndq7eQHjLBVlWpnGeLa3t+3zGiuM7fJwCkiMFq+nmRuG3RI3f7f4N4TDX7T4NpbAXpR2+NTRSEGfCSeA==}
+    peerDependencies:
+      leaflet: ^1.3.1
+    dependencies:
+      leaflet: 1.9.4
+    dev: false
+
   /leaflet@1.9.4:
     resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
     dev: false
@@ -5317,6 +5366,23 @@ packages:
 
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+    dev: false
+
+  /react-leaflet-markercluster@3.0.0-rc1(leaflet.markercluster@1.5.3)(leaflet@1.9.4)(react-dom@18.2.0)(react-leaflet@4.2.1)(react@18.2.0):
+    resolution: {integrity: sha512-wr8ERtx73sY0uVoQAM1v1vsA5Vsbdgyqc88h+Eo2kYRwNdkVTEOoUTnAh3CgGuOyP0Y9QLd2dKGupGkufpwryQ==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+    peerDependencies:
+      leaflet: ^1.6.0
+      leaflet.markercluster: ^1.4.1
+      react-leaflet: ^3.0.0
+    dependencies:
+      '@react-leaflet/core': 1.1.1(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0)
+      leaflet: 1.9.4
+      leaflet.markercluster: 1.5.3(leaflet@1.9.4)
+      react-leaflet: 4.2.1(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0)
+    transitivePeerDependencies:
+      - react
+      - react-dom
     dev: false
 
   /react-leaflet@4.2.1(leaflet@1.9.4)(react-dom@18.2.0)(react@18.2.0):
