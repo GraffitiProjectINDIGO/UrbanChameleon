@@ -9,8 +9,9 @@ import {
   Popup,
   TileLayer,
   Tooltip,
+  useMap,
 } from 'react-leaflet';
-import styles from '../styles/Map.module.scss';
+import styles from './Map.module.scss';
 
 interface Artifact {
   id: string;
@@ -21,7 +22,7 @@ interface Artifact {
 }
 
 interface MapProps {
-  artifacts: Artifact[]; // Add a prop type for the artifacts array
+  artifacts: Artifact[]; 
 }
 
 const MapWithNoSSR = dynamic(
@@ -35,6 +36,21 @@ const MapWithNoSSR = dynamic(
     }),
   { ssr: false },
 );
+
+const MapPane = () => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (map) {
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 100);
+    }
+  }, [map]);  
+
+  return null;
+};
+
 
 const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
   const [MarkerIcon, setMarkerIcon] = useState<L.Icon>();
@@ -66,13 +82,13 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
   return (
     <>
       <MapContainer
-        doubleClickZoom={true}
-        id="mapId"
-        zoom={14}
-        center={[48.217, 16.3727]}
-        preferCanvas={true}
-        style={{ marginTop: '20rem', height: '500px', width: '100%' }}
-      >
+      doubleClickZoom={true}
+      id="mapId"
+      zoom={14}
+      center={[48.217, 16.3727]}
+      preferCanvas={true}
+      style={{ marginTop: '10rem', paddingBottom: '10rem', height: 'calc(100vh - 10rem)'}}>
+        <MapPane />
         <LayersControl collapsed={false}>
           <LayersControl.BaseLayer checked name="ESRI grey">
             <TileLayer

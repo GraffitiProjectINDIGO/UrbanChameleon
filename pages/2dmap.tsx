@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/TwoDMap.module.scss';
 
 const DynamicMap = dynamic(() => import('../components/Map'), {
-  ssr: false, // This line disables server-side rendering for the Map component
+  ssr: false, 
 });
 
 export default function twoMap() {
@@ -26,12 +26,13 @@ export default function twoMap() {
   }, []);
 
   return (
-    <>
+    <div className={styles.parentContainer}>
       <Navbar />
       <div className={styles.content}>
         <DynamicMap artifacts={artifacts} />
       </div>
       <Footer />
-    </>
+    </div> 
+  
   );
 }

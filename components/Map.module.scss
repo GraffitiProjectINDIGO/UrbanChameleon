@@ -1,3 +1,5 @@
+@import '~leaflet/dist/leaflet.css';
+
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -6,19 +8,15 @@
   body,
   #root,
   .App,
+
   #mapId {
     margin: 0px;
+    pointer-events: auto;
   }
+
   body {
     min-height: 100vh;
     padding-top: 4rem;
-  }
-
-  #mapId {
-    height: 100%;
-    pointer-events: auto;
-    width: 100%;
-    z-index: 0;
   }
 
   .overlay {
