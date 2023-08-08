@@ -24,6 +24,26 @@
   flex: 1;
 }
 
+.chameleonContainer {
+  display: grid;
+  margin-top: 50px;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.chameleonImage {
+  max-width: 100%;
+  height: auto;
+}
+
+.chameleonText {
+  font-size: 40px;
+  text-align: left;
+  line-height: 1.2;
+}
+
 .footer {
   flex-shrink: 0;
   position: sticky;

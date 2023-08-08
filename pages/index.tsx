@@ -20,8 +20,15 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
     <div className={styles.pageContainer}>
       <div className={styles.contentWrap}>
         <Navbar />
-        <div><ThemeSwitcher /></div>
         <div className={styles.container}>
+          <div className={styles.chameleonContainer}>
+            <img src="/images/Chameleon.png" alt="Chameleon" className={styles.chameleonImage} />
+              <div className={styles.chameleonText}>
+              THE<br />
+              URBAN<br />
+              CHAMELEON
+              </div>
+          </div>
         <div className={styles.title}>
           <p style={{ fontSize: 40 }}>
             graffiti makes people laugh, wonder, angry, think
