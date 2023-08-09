@@ -1,4 +1,3 @@
-import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
 import React from 'react';
@@ -31,18 +30,6 @@ const columns: GridColDef[] = [
   },
   { field: 'longitude', headerName: 'Longitude', flex: 1 },
   { field: 'latitude', headerName: 'Latitude', flex: 1 },
-  {
-    field: 'details',
-    headerName: 'Details',
-    flex: 1,
-    renderCell: (params: GridCellParams) => (
-      <Tooltip title="Details">
-        <IconButton onClick={() => console.log('View artifact', params.row.id)}>
-          <EyeIcon size={20} fill="#979797" />
-        </IconButton>
-      </Tooltip>
-    ),
-  },
 ];
 
 const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
