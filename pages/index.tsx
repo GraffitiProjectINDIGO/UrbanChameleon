@@ -30,7 +30,7 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
               </div>
           </div>
         <div className={styles.title}>
-          <p style={{ fontSize: 40 }}>
+          <p style={{ fontSize: 30 }}>
             graffiti makes people laugh, wonder, angry, think
             <br />
             graffiti is a <span style={{ color: '#f1881f' }}>
