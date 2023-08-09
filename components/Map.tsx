@@ -14,6 +14,7 @@ import { Icon, divIcon, point } from "leaflet";
 import styles from './Map.module.scss';
 import 'leaflet/dist/leaflet.css';
 import 'node_modules/react-leaflet-cluster/lib/assets/MarkerCluster.Default.css';
+import L from 'leaflet';
 
 interface Artifact {
   id: string;
@@ -34,7 +35,7 @@ const customIcon = new Icon({
 
 const createClusterCustomIcon: (cluster: any) => L.DivIcon = (cluster) => {
   console.log("Creating custom icon for cluster");
-  return new divIcon({
+  return L.divIcon({
     html: `<div style="background-image: linear-gradient(135deg, #e95095, #7049ba); height: 2em; width: 2em; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; box-shadow: 0 0 0px 5px #fff;"><span>${cluster.getChildCount()}</span></div>`,
     className: "custom-marker-cluster",
     iconSize: point(33, 33, true)
