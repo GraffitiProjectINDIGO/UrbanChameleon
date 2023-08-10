@@ -3,10 +3,9 @@
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 20px;
-  padding: 20px;
+  grid-gap: 10px;
+  padding: 10px;
   flex: 1 0 auto;
-  
 }
 
 .mainContainer {
@@ -18,7 +17,7 @@
 .pageContainer {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 .contentWrap {
@@ -27,6 +26,7 @@
 
 .triangleBackground {
   position: relative;
+  margin-top: 0px;
 }
 
 .triangleSVG {
@@ -43,15 +43,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2px;
-  margin-top: 2px; 
 }
 
 .chameleonContainer {
   display: flex; 
   align-items: center; 
   justify-content: center; 
-  gap: 20px; 
+  gap: 10px; 
 }
 
 .chameleonImage {
@@ -75,7 +73,7 @@
 .title {
   grid-column: 1 / -1;
   text-align: center;
-  margin-top: 45px;
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 
@@ -90,15 +88,15 @@
 
   img {
     max-height: 100%;
-  width: auto;
-  object-fit: contain;
+    width: auto;
+    object-fit: contain;
   }
 
   .slide {
     display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
   
 }
@@ -108,7 +106,7 @@
   justify-content: center;
   align-items: center;
   grid-column: 1 / -1;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .description {
@@ -143,14 +141,6 @@
 
 .iconText:hover::before {
   clip-path: inset(0 0 0 0);
-}
-
-.parentContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 .iconText p {

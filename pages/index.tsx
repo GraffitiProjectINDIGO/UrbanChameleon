@@ -17,7 +17,6 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ artifacts }) => {
   return (
     <div className={styles.pageContainer}>
-      <div className={styles.contentWrap}>
         <Navbar />
         <div className={styles.triangleBackground}>
           <svg className={styles.triangleSVG} width="100%" height="25vh" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -29,8 +28,6 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
             </defs>
             <polygon points="0,0 100,0 50,100" fill="url(#triangleGradient)" fill-opacity="0.8" />
           </svg>
-          <div className={styles.container}>
-        </div>
         <div className={styles.centerContainer}>
           <div className={styles.chameleonContainer}>
             <img src="/images/Chameleon.png" alt="Chameleon" className={styles.chameleonImage} />
@@ -38,7 +35,6 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
               URBAN<br />
               CHAMELEON
           </div>
-        </div>
         </div>
         <div className={styles.title}>
           <p style={{ fontSize: 30 }}>
@@ -219,7 +215,6 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
       </div>
         <LogosGrid />
         <Footer />
-     
     </div>
   );
 };
