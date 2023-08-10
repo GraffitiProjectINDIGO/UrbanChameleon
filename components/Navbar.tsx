@@ -5,14 +5,11 @@ import styles from './Navbar.module.scss';
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <a
-        href="https://projectindigo.eu/"
+      <div
         className={styles.brand}
-        target="_blank"
-        rel="noopener noreferrer"
       >
-        project INDIGO
-      </a>
+        UrbanChameleon
+      </div>
       <div className={styles.links}>
         <Link href="/">Home</Link>
         <Link href="/2dmap">2D Map</Link>

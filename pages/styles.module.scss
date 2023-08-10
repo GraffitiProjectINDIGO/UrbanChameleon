@@ -6,6 +6,7 @@
   grid-gap: 20px;
   padding: 20px;
   flex: 1 0 auto;
+  
 }
 
 .mainContainer {
@@ -24,22 +25,42 @@
   flex: 1;
 }
 
-.chameleonContainer {
-  display: grid;
-  margin-top: 50px;
-  grid-template-columns: auto auto;
+.triangleBackground {
+  position: relative;
+}
+
+.triangleSVG {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; 
+  width: 100%;
+  height: 25vh;
+}
+
+.centerContainer {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  margin-bottom: 2px;
+  margin-top: 2px; 
+}
+
+.chameleonContainer {
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 20px; 
 }
 
 .chameleonImage {
-  max-width: 100%;
+  max-width: 30%;
   height: auto;
 }
 
 .chameleonText {
-  font-size: 40px;
+  font-size: 50px;
   text-align: left;
   line-height: 1.2;
 }
@@ -54,8 +75,8 @@
 .title {
   grid-column: 1 / -1;
   text-align: center;
-  margin-top: 100px;
-  margin-bottom: 70px;
+  margin-top: 45px;
+  margin-bottom: 10px;
 }
 
 .carousel {

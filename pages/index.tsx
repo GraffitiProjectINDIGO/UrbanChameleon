@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 import LogosGrid from '../components/LogosGrid';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
-import ThemeSwitcher from '../components/ThemeSwitcher'
 
 interface HomeProps {
   artifacts: Artifact[];
@@ -20,15 +19,27 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
     <div className={styles.pageContainer}>
       <div className={styles.contentWrap}>
         <Navbar />
-        <div className={styles.container}>
+        <div className={styles.triangleBackground}>
+          <svg className={styles.triangleSVG} width="100%" height="25vh" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{ stopColor: '#e95095' }} />
+                <stop offset="100%" style={{ stopColor: '#7049ba' }} />
+              </linearGradient>
+            </defs>
+            <polygon points="0,0 100,0 50,100" fill="url(#triangleGradient)" fill-opacity="0.8" />
+          </svg>
+          <div className={styles.container}>
+        </div>
+        <div className={styles.centerContainer}>
           <div className={styles.chameleonContainer}>
             <img src="/images/Chameleon.png" alt="Chameleon" className={styles.chameleonImage} />
               <div className={styles.chameleonText}>
-              THE<br />
               URBAN<br />
               CHAMELEON
-              </div>
           </div>
+        </div>
+        </div>
         <div className={styles.title}>
           <p style={{ fontSize: 30 }}>
             graffiti makes people laugh, wonder, angry, think
@@ -188,7 +199,6 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
             showIndicators={false}
             infiniteLoop={true}
             className="my-carousel"
-            
           >
             {artifacts &&
               artifacts.map((artifact) => (
@@ -223,7 +233,7 @@ export async function getStaticProps() {
       props: {
         artifacts,
       },
-      revalidate: 60, // Optional: Time in seconds after which a page re-generation can occur (in this case, 60 seconds)
+      revalidate: 60, 
     };
   } catch (error) {
     console.error('Error fetching artifacts data:', error);

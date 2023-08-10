@@ -7,10 +7,9 @@ import {
   Tooltip,
   useMap,
   LayersControl,
-  LayerGroup,
 } from 'react-leaflet';
 import MarkerClusterGroup from "react-leaflet-cluster";
-import { Icon, divIcon, point } from "leaflet";
+import { Icon, point } from "leaflet";
 import styles from './Map.module.scss';
 import 'leaflet/dist/leaflet.css';
 import 'node_modules/react-leaflet-cluster/lib/assets/MarkerCluster.Default.css';
