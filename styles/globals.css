@@ -254,3 +254,64 @@ img, video {
 .grid {
   display: grid;
 }
+
+.dark {
+  background-color: #3d3d3d; 
+  color: #fff; 
+}
+
+.dark a {
+  color: #bbb; 
+}
+
+/* Dark Theme Styles for DataGrid */
+.dark .MuiDataGrid-root {
+  background-color: #555;
+  border-color: #444; 
+}
+
+.dark .MuiDataGrid-cell {
+  color: #fff;
+  border-bottom-color: #444; 
+}
+
+.dark .MuiDataGrid-columnHeader {
+  color: #fff;
+  border-bottom-color: #444; 
+}
+
+.dark .MuiDataGrid-sortIcon {
+  color: #fff; 
+}
+
+.dark .MuiTablePagination-caption {
+  color: #fff; 
+}
+
+.dark .MuiSelect-select {
+  color: #fff; 
+}
+
+.dark .MuiTablePagination-actions {
+  color: #fff; 
+}
+
+.dark .MuiTablePagination-selectLabel {
+  color: #D1D5DB; 
+}
+
+.dark .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiSelect-icon {
+  fill: #D1D5DB; 
+}
+
+.dark .MuiTablePagination-displayedRows {
+  color: #D1D5DB; 
+}
+
+.dark .MuiIconButton-root.Mui-disabled .MuiSvgIcon-root {
+  fill: #A0AEC0; 
+}
+
+.dark .MuiIconButton-root.Mui-disabled:hover {
+  background-color: #4A5568; 
+}
