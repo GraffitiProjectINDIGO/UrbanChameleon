@@ -188,17 +188,16 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
           </div>
         </div>
         <div className={styles.carousel}>
-          <Carousel
-            showArrows
-            swipeable
-            showThumbs={true}
-            showIndicators={false}
-            infiniteLoop={true}
-            className="my-carousel"
-          >
-            {artifacts &&
-              artifacts.map((artifact) => (
-                <div key={artifact.id} className={styles.carouselImageContainer}>
+        <Carousel
+          showArrows
+          swipeable
+          showIndicators={false}
+          infiniteLoop={true}
+          className="my-carousel"
+        >
+          {artifacts &&
+            artifacts.map((artifact) => (
+              <div key={artifact.id} className={styles.carouselImageContainer}>
                 {artifact.imageUrl && (
                   <img
                     src={artifact.imageUrl}
@@ -207,9 +206,8 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
                   />
                 )}
               </div>
-              
-              ))}
-          </Carousel>
+            ))}
+        </Carousel>
           </div>
           </div>
       </div>
