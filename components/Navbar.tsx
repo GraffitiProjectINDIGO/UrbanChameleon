@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import styles from './Navbar.module.scss';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const Navbar = () => {
   return (
@@ -14,6 +15,7 @@ const Navbar = () => {
         <Link href="/">Home</Link>
         <Link href="/2dmap">2D Map</Link>
         <Link href="/data">Data</Link>
+        <ThemeSwitcher />
       </div>
     </nav>
   );

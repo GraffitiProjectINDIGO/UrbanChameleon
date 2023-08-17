@@ -1,4 +1,4 @@
-import '@/styles/globals.css';
+import '../styles/globals.css';
 import { ThemeProvider } from 'next-themes';
 import React from 'react';
 import type { AppProps } from 'next/app';

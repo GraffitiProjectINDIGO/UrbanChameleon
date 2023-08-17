@@ -26,7 +26,7 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
                 <stop offset="100%" style={{ stopColor: '#7049ba' }} />
               </linearGradient>
             </defs>
-            <polygon points="0,0 100,0 50,100" fill="url(#triangleGradient)" fill-opacity="0.8" />
+            <polygon points="0,0 100,0 50,100" fill="url(#triangleGradient)" fillOpacity="0.8" />
           </svg>
         <div className={styles.centerContainer}>
           <div className={styles.chameleonContainer}>
