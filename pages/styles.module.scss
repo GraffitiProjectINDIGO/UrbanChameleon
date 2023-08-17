@@ -8,6 +8,10 @@
   flex: 1 0 auto;
 }
 
+.content {
+  flex: 1;
+}
+
 .mainContainer {
   display: flex;
   grid-template-rows: auto 1fr auto;
@@ -189,3 +193,14 @@
   float: left !important;
 }
 
+.parentContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

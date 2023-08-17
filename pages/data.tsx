@@ -39,8 +39,9 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
 
   return (
     <>
+    <div className={styles.dataContainer}>
       <Navbar />
-      <div style={{ height: 'calc(100vh - 100px)', width: '100%', paddingTop: '50px', paddingLeft: '10px', paddingRight: '10px' }}>
+      <div style={{ height: 'calc(100vh - 100px)', width: '100%', paddingTop: '60px', paddingLeft: '10px', paddingRight: '10px' }}>
         <DataGrid
           rows={artifacts}
           columns={columns}
@@ -49,6 +50,7 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
         />
       </div>
       <Footer />
+    </div>
     </>
   );
 };
