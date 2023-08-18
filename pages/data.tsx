@@ -12,10 +12,24 @@ interface TablePageProps {
 }
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', flex: 1 },
-  { field: 'title', headerName: 'Title', flex: 1 },
-  { field: 'description', headerName: 'Description', flex: 1 },
-  { field: 'types', headerName: 'Type', flex: 1 },
+  { field: 'title', headerName: 'Title', flex: 1, resizable: true },
+  { field: 'description', headerName: 'Description', flex: 1, resizable: true },
+  {
+    field: 'graffitist',
+    headerName: 'Graffitist',
+    flex: 1,
+    resizable: true
+  },
+  { field: 'types', headerName: 'Type', flex: 2, resizable: true },
+  {
+    field: 'colors',
+    headerName: 'Colors',
+    flex: 1,
+    renderCell: (params: GridCellParams) => (
+      Array.isArray(params.value) ? params.value.join(', ') : ''
+    ),
+    resizable: true
+  },
   {
     field: 'imageUrl',
     headerName: 'Depiction',
@@ -25,11 +39,32 @@ const columns: GridColDef[] = [
         src={`${params.value}?image_size=table`}
         alt={params.row.title as string}
         style={{ width: '100%' }}
+        onError={(e) => {
+          e.currentTarget.style.display = 'none'; 
+        }}
       />
     ),
+    resizable: true
   },
-  { field: 'longitude', headerName: 'Longitude', flex: 1 },
-  { field: 'latitude', headerName: 'Latitude', flex: 1 },
+  {
+    field: 'area',
+    headerName: 'Area',
+    flex: 1,
+    resizable: true
+  },
+  { field: 'longitude', headerName: 'Longitude', flex: 1, resizable: true },
+  { field: 'latitude', headerName: 'Latitude', flex: 1, resizable: true },
+  /* {
+    field: 'view',
+    headerName: 'View',
+    flex: 1,
+    renderCell: (params: GridCellParams) => (
+      <Tooltip title="View Artifact">
+        <EyeIcon />
+      </Tooltip>
+    ),
+    resizable: true
+  }, */
 ];
 
 const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
@@ -39,18 +74,18 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
 
   return (
     <>
-    <div className={styles.dataContainer}>
-      <Navbar />
-      <div style={{ height: 'calc(100vh - 100px)', width: '100%', paddingTop: '60px', paddingLeft: '10px', paddingRight: '10px' }}>
-        <DataGrid
-          rows={artifacts}
-          columns={columns}
-          disableColumnMenu
-          disableRowSelectionOnClick
-        />
+      <div className={styles.dataContainer}>
+        <Navbar />
+        <div style={{ height: 'calc(100vh - 100px)', width: '100%', paddingTop: '60px', paddingLeft: '10px', paddingRight: '10px' }}>
+          <DataGrid
+            rows={artifacts}
+            columns={columns}
+            disableColumnMenu
+            disableRowSelectionOnClick
+          />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
     </>
   );
 };
@@ -64,7 +99,7 @@ export async function getStaticProps() {
       props: {
         artifacts,
       },
-      revalidate: 60, // Optional: Time in seconds after which a page re-generation can occur (in this case, 60 seconds)
+      revalidate: 60, 
     };
   } catch (error) {
     console.error('Error fetching artifacts data:', error);

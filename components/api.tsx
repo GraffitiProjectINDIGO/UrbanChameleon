@@ -8,6 +8,9 @@ export interface Artifact {
   types: string;
   startDate: string;
   endDate: string;
+  colors: string[]; 
+  area: number | null;
+  graffitist?: string;
 }
 
 export async function getArtifactsData(): Promise<Artifact[]> {
@@ -22,6 +25,21 @@ export async function getArtifactsData(): Promise<Artifact[]> {
       if (feature.geometry?.type === 'Point') {
         coordinates = feature.geometry?.coordinates || [];
       }
+    
+      const colorTypes = ["red", "black", "white"]; // Add more colors if needed
+      const colors = feature.types
+        ? feature.types
+            .filter((type: any) => colorTypes.includes(type.label))
+            .map((colorType: any) => colorType.label)
+        : [];
+
+      const areaType = feature.types?.find((type: any) => type.label === "area");
+      const area = areaType ? areaType.value : null;
+
+      const graffitistRelation = artifact.relations?.find(
+        (relation: any) => relation.relationType === "crm:P52 has current owner" && relation.relationSystemClass === "person"
+      );
+      const graffitist = graffitistRelation?.label || '';
 
       return {
         id: feature['@id'],
@@ -33,11 +51,14 @@ export async function getArtifactsData(): Promise<Artifact[]> {
         types: feature.types?.[0]?.label || '',
         startDate: feature.when?.timespans?.[0]?.start?.earliest || '',
         endDate: feature.when?.timespans?.[0]?.end?.earliest || '',
+        colors: colors,
+        area: area,
+        graffitist: graffitist,
       };
     });
     return artifacts;
   } catch (error) {
     console.error(error);
-    throw error; // Rethrow the error so it can be handled by the caller
+    throw error; 
   }
 }
