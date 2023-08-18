@@ -5,9 +5,39 @@ import {
   getArtifactsData,
 } from '../components/api';
 import Footer from '../components/Footer';
-import LogosGrid from '../components/LogosGrid';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
+import styled from 'styled-components';
+
+const Grid = styled.section`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  grid-gap: 20px;
+  background-color: #f6f6f6;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledImage = styled.img`
+  height: auto;
+  width: auto;
+  max-height: 50px;
+  max-width: 100%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
 
 interface HomeProps {
   artifacts: Artifact[];
@@ -191,7 +221,68 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
           </div>
         </div>
         </div>
-        <LogosGrid />
+        <Grid>
+          <LogoContainer>
+            <a
+              target="_blank"
+              href="https://archpro.lbg.ac.at/"
+              rel="noopener"
+              aria-label="Link"
+            >
+              <StyledImage
+                src="https://projectindigo.eu/wp-content/uploads/2021/09/Logo_LBI_ArchPro.svg"
+                alt="LBI ArchPro"
+                decoding="async"
+                loading="lazy"
+              />
+            </a>
+          </LogoContainer>
+          <LogoContainer>
+            <a
+              target="_blank"
+              href="https://www.geo.tuwien.ac.at/"
+              rel="noopener"
+              aria-label="Link"
+            >
+              <StyledImage
+                src="https://projectindigo.eu/wp-content/uploads/2021/09/Logo_GEO_with_text.png"
+                alt="Geo TU Wien"
+                decoding="async"
+                loading="lazy"
+              />
+            </a>
+          </LogoContainer>
+          <LogoContainer>
+            <a
+              target="_blank"
+              href="https://spraycity.at/"
+              rel="noopener"
+              aria-label="Link"
+            >
+              <StyledImage
+                src="https://projectindigo.eu/wp-content/uploads/2021/09/Logo_SprayCity_border-1536x1360.png"
+                alt="SprayCity"
+                decoding="async"
+                loading="lazy"
+              />
+            </a>
+          </LogoContainer>
+          <LogoContainer>
+            <a
+              target="_blank"
+              href="https://www.oeaw.ac.at/acdh/acdh-ch-home/"
+              rel="noopener"
+              aria-label="Link"
+            >
+              <StyledImage
+                src="https://projectindigo.eu/wp-content/uploads/2021/09/Logo_OEAW-ACDH-CH_smaller.png"
+                alt="ACDH-CH"
+                decoding="async"
+                loading="lazy"
+              />
+            </a>
+          </LogoContainer>
+        </Grid>
       <Footer />
     </div>
   );
