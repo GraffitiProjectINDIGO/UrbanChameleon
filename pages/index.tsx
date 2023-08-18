@@ -1,6 +1,5 @@
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
+import MyCarousel from '../components/Carousel';
 import {
   Artifact,
   getArtifactsData,
@@ -187,32 +186,13 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
             </div>
           </div>
         </div>
-        <div className={styles.carousel}>
-        <Carousel
-          showArrows
-          swipeable
-          showIndicators={false}
-          infiniteLoop={true}
-          className="my-carousel"
-        >
-          {artifacts &&
-            artifacts.map((artifact) => (
-              <div key={artifact.id} className={styles.carouselImageContainer}>
-                {artifact.imageUrl && (
-                  <img
-                    src={artifact.imageUrl}
-                    alt={artifact.title}
-                    className={styles.carouselImage}
-                  />
-                )}
-              </div>
-            ))}
-        </Carousel>
+          <div >
+              <MyCarousel artifacts={artifacts} />
           </div>
-          </div>
-      </div>
+        </div>
+        </div>
         <LogosGrid />
-        <Footer />
+      <Footer />
     </div>
   );
 };

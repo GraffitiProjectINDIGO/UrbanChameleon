@@ -83,7 +83,7 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
       zoom={14}
       center={[48.217, 16.3727]}
       preferCanvas={true}
-      style={{ marginTop: '10rem', paddingBottom: '10rem', height: 'calc(100vh - 10rem)' }}
+      style={{ marginTop: '3rem', paddingBottom: '10rem', height: 'calc(100vh - 10rem)' }}
     >
       <LayersControl collapsed={false}>
         <LayersControl.BaseLayer checked name="Watercolor">

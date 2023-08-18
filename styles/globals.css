@@ -26,11 +26,13 @@ html {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-feature-settings: normal;
   font-variation-settings: normal;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   line-height: inherit;
+  overflow-x: hidden;
 }
 
 hr {
