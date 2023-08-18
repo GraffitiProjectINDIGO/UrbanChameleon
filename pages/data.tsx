@@ -82,6 +82,9 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
             columns={columns}
             disableColumnMenu
             disableRowSelectionOnClick
+            onRowClick={(param) => {
+              window.location.href = `/graffito?id=${param.id}`;
+            }}
           />
         </div>
         <Footer />
