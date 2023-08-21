@@ -10,7 +10,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 93vh;
+  height: calc(100vh - 50px - 88px);
+  margin-top: 50px;
 }
 
 .footer {

@@ -1,8 +1,6 @@
-import Tooltip from '@mui/material/Tooltip';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
 import React from 'react';
 import { Artifact, getArtifactsData } from '../components/api';
-import { EyeIcon } from '../components/EyeIcon';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
@@ -54,17 +52,6 @@ const columns: GridColDef[] = [
   },
   { field: 'longitude', headerName: 'Longitude', flex: 1, resizable: true },
   { field: 'latitude', headerName: 'Latitude', flex: 1, resizable: true },
-  /* {
-    field: 'view',
-    headerName: 'View',
-    flex: 1,
-    renderCell: (params: GridCellParams) => (
-      <Tooltip title="View Artifact">
-        <EyeIcon />
-      </Tooltip>
-    ),
-    resizable: true
-  }, */
 ];
 
 const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {

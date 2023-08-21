@@ -14,6 +14,7 @@ import styles from './Map.module.scss';
 import 'leaflet/dist/leaflet.css';
 import 'node_modules/react-leaflet-cluster/lib/assets/MarkerCluster.Default.css';
 import L from 'leaflet';
+import Link from 'next/link';
 
 interface Artifact {
   id: string;
@@ -33,7 +34,6 @@ const customIcon = new Icon({
 });
 
 const createClusterCustomIcon: (cluster: any) => L.DivIcon = (cluster) => {
-  console.log("Creating custom icon for cluster");
   return L.divIcon({
     html: `<div style="background-image: linear-gradient(135deg, #e95095, #7049ba); height: 2em; width: 2em; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 1.2rem; box-shadow: 0 0 0px 5px #fff;"><span>${cluster.getChildCount()}</span></div>`,
     className: "custom-marker-cluster",
@@ -46,10 +46,26 @@ const MapPane = () => {
   const map = useMap();
 
   useEffect(() => {
-    if (map) {
-      setTimeout(() => {
-        map.invalidateSize();
-      }, 100);
+      const saveMapState = () => {
+        console.log("Map moved")
+          const center = map.getCenter();
+          const zoom = map.getZoom();
+          localStorage.setItem('mapState', JSON.stringify({ center, zoom }));
+      };
+
+      map.on('moveend', saveMapState);
+
+      // Cleanup the event listener when the component is unmounted
+      return () => {
+          map.off('moveend', saveMapState);
+      };
+  }, [map]);
+
+  useEffect(() => {
+    const mapState = localStorage.getItem('mapState');
+    if (mapState) {
+        const { center, zoom } = JSON.parse(mapState);
+        map.setView(center, zoom);
     }
   }, [map]);
 
@@ -83,7 +99,7 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
       zoom={14}
       center={[48.217, 16.3727]}
       preferCanvas={true}
-      style={{ marginTop: '3rem', paddingBottom: '10rem', height: 'calc(100vh - 10rem)' }}
+      style={{ height: '100%' }}
     >
       <LayersControl collapsed={false}>
         <LayersControl.BaseLayer checked name="Watercolor">
@@ -118,31 +134,20 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
                     icon={customIcon}
                   >
                     <Popup>
-                      <h2 className={styles.selectedArtifactTitle}>
+                      <h2 className="text-xl font-bold mb-4 whitespace-nowrap overflow-hidden overflow-ellipsis">
                         {artifact.title ?? ''}
                       </h2>
                       <img
                         src={artifact.imageUrl}
                         alt={artifact.title}
-                        width={250}
+                        className="w-full h-auto rounded-md mb-4"
                       />
-                      <button
-                        className="button"
-                        onClick={() => console.log('More details clicked')}
-                      >
-                        More details
-                      </button>
+                      <Link href={`/graffito?id=${artifact.id}`}>
+                        <button className="bg-gradient-to-r from-e95095 to-7049ba text-white px-4 py-2 rounded-md mx-auto block z-10">
+                          Graffito details
+                        </button>
+                      </Link>
                     </Popup>
-                    <Tooltip direction="top" opacity={1} sticky>
-                      <img
-                        src={
-                          artifact.imageUrl.split(/".png"| ".jpg"/)[0] +
-                          '?image_size=table'
-                        }
-                        alt={artifact.title}
-                        width={50}
-                      />
-                    </Tooltip>
                   </Marker>
                 );
               }
