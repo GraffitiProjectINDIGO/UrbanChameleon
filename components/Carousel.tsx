@@ -69,7 +69,7 @@ const MyCarousel: React.FC<CarouselProps> = ({ artifacts }) => {
   }, []);
 
   return (
-    <div className={styles.carouselContainer}>
+    <div >
       <Slider {...settings} className={styles.slider} ref={sliderRef}>
         {artifacts.map((artifact) => (
           <div key={artifact.id} className={styles.slide}>
