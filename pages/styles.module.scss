@@ -33,7 +33,7 @@
 .pageContainer {
   display: flex;
   flex-direction: column;
-  min-height: 90vh;
+  min-height: 100vh;
 }
 
 .contentWrap {
@@ -66,11 +66,11 @@
   align-items: center; 
   justify-content: center; 
   gap: 10px; 
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .chameleonImage {
-  max-width: 30%;
+  max-width: 20%;
   height: auto;
 }
 
@@ -148,6 +148,7 @@
   align-items: center;
   gap: 20px;
 }
+
 
 @media (min-width: 600px) { 
   .logosGrid {

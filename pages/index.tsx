@@ -221,7 +221,7 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
           </div>
         </div>
         </div>
-        <Grid>
+        <Grid style={{ marginTop: '30px' }}>
           <LogoContainer>
             <a
               target="_blank"

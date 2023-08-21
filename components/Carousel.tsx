@@ -8,33 +8,6 @@ interface CarouselProps {
   artifacts: { id: string; imageUrl: string; title: string }[];
 }
 
-interface ArrowProps {
-  className?: string;
-  style?: React.CSSProperties;
-  onClick?: () => void;
-}
-
-const NextArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
-  return (
-    <div
-      className={`${className} ${styles.nextArrow}`}
-      onClick={onClick}
-    >
-      →
-    </div>
-  );
-};
-
-const PrevArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
-  return (
-    <div
-      className={`${className} ${styles.prevArrow}`}
-      onClick={onClick}
-    >
-      ←
-    </div>
-  );
-};
 
 const MyCarousel: React.FC<CarouselProps> = ({ artifacts }) => {
   const settings = {
@@ -44,8 +17,6 @@ const MyCarousel: React.FC<CarouselProps> = ({ artifacts }) => {
     slidesToShow: 1,
     centerMode: true,
     variableWidth: true,
-    nextArrow: <NextArrow />, 
-    prevArrow: <PrevArrow />, 
     centerPadding: '60px',
     swipe: true,
   };
@@ -70,7 +41,7 @@ const MyCarousel: React.FC<CarouselProps> = ({ artifacts }) => {
 
   return (
     <div >
-      <Slider {...settings} className={styles.slider} ref={sliderRef}>
+      <Slider {...settings} ref={sliderRef}>
         {artifacts.map((artifact) => (
           <div key={artifact.id} className={styles.slide}>
             {artifact.imageUrl && (
