@@ -15,6 +15,7 @@ import 'leaflet/dist/leaflet.css';
 import 'node_modules/react-leaflet-cluster/lib/assets/MarkerCluster.Default.css';
 import L from 'leaflet';
 import Link from 'next/link';
+import GraffitoOverlay from './GraffitoOverlay';
 
 interface Artifact {
   id: string;
@@ -92,6 +93,19 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
     });
   }, []);
 
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [selectedGraffito, setSelectedGraffito] = useState<Artifact | null>(null);
+
+  const openOverlay = (artifact: Artifact) => {
+    setSelectedGraffito(artifact);
+    setIsOverlayOpen(true);
+  };
+
+  const closeOverlay = () => {
+    setIsOverlayOpen(false);
+    setSelectedGraffito(null);
+  };
+
   return (
     <MapContainer
       doubleClickZoom={true}
@@ -142,11 +156,12 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
                         alt={artifact.title}
                         className="w-full h-auto rounded-md mb-4"
                       />
-                      <Link href={`/graffito?id=${artifact.id}`}>
-                        <button className="bg-gradient-to-r from-e95095 to-7049ba text-white px-4 py-2 rounded-md mx-auto block z-10">
-                          Graffito details
-                        </button>
-                      </Link>
+                      <button
+                        onClick={() => openOverlay(artifact)}
+                        className="bg-gradient-to-r from-e95095 to-7049ba text-white px-4 py-2 rounded-md mx-auto block z-10"
+                      >
+                        Graffito details
+                      </button>
                     </Popup>
                   </Marker>
                 );

@@ -1,9 +1,10 @@
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
-import React from 'react';
+import React, { useState }  from 'react';
 import { Artifact, getArtifactsData } from '../components/api';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
+import GraffitoOverlay from '../components/GraffitoOverlay';
 
 interface TablePageProps {
   artifacts: Artifact[];
@@ -58,9 +59,21 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
   if (!artifacts || artifacts.length === 0) {
     return <p>Loading graffiti data...</p>;
   }
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [selectedGraffito, setSelectedGraffito] = useState<Artifact | null>(null);
+
+  const openOverlay = (artifact: Artifact) => {
+    setSelectedGraffito(artifact);
+    setIsOverlayOpen(true);
+  };
+
+  const closeOverlay = () => {
+    setIsOverlayOpen(false);
+    setSelectedGraffito(null);
+  };
 
   return (
-    <>
+      <>
       <div className={styles.dataContainer}>
         <Navbar />
         <div style={{ height: 'calc(100vh - 100px)', width: '100%', paddingTop: '60px', paddingLeft: '10px', paddingRight: '10px' }}>
@@ -70,12 +83,19 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
             disableColumnMenu
             disableRowSelectionOnClick
             onRowClick={(param) => {
-              window.location.href = `/graffito?id=${param.id}`;
+              const artifact = artifacts.find(a => a.id === param.id);
+              if (artifact) {
+                openOverlay(artifact);
+              }
             }}
           />
         </div>
         <Footer />
       </div>
+
+      {isOverlayOpen && selectedGraffito && (
+        <GraffitoOverlay graffito={selectedGraffito} onClose={closeOverlay} />
+      )}
     </>
   );
 };
