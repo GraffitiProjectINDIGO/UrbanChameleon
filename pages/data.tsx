@@ -4,7 +4,12 @@ import { Artifact, getArtifactsData } from '../components/api';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
-import GraffitoOverlay from '../components/GraffitoOverlay';
+import dynamic from 'next/dynamic';
+
+const GraffitoOverlay = dynamic(() => import('../components/GraffitoOverlay'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>
+});
 
 interface TablePageProps {
   artifacts: Artifact[];

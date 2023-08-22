@@ -13,8 +13,13 @@ import styles from './Map.module.scss';
 import 'leaflet/dist/leaflet.css';
 import 'node_modules/react-leaflet-cluster/lib/assets/MarkerCluster.Default.css';
 import L from 'leaflet';
-import GraffitoOverlay from './GraffitoOverlay';
 import { Artifact } from './api';
+import dynamic from 'next/dynamic';
+
+const GraffitoOverlay = dynamic(() => import('./GraffitoOverlay'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>
+});
 
 interface MapProps {
   artifacts: Artifact[];
