@@ -51,9 +51,9 @@ export async function getArtifactsData(): Promise<Artifact[]> {
         types: feature.types?.[0]?.label || '',
         startDate: feature.when?.timespans?.[0]?.start?.earliest || '',
         endDate: feature.when?.timespans?.[0]?.end?.earliest || '',
-        colors: colors,
-        area: area,
-        graffitist: graffitist,
+        colors: colors  || '',
+        area: area  || '',
+        graffitist: graffitist  || '',
       };
     });
     return artifacts;
@@ -121,9 +121,9 @@ export async function getGraffitoDetails(id: string): Promise<Artifact> {
       types: feature.types?.[0]?.label || '',
       startDate: feature.when?.timespans?.[0]?.start?.earliest || '',
       endDate: feature.when?.timespans?.[0]?.end?.earliest || '',
-      colors: colors,
-      area: area,
-      graffitist: graffitist,
+      colors: colors  || '',
+      area: area  || '',
+      graffitist: graffitist  || '',
     };
     return graffito;
   } catch (err) {

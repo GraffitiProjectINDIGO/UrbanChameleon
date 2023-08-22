@@ -352,3 +352,12 @@ left: 8px !important;
 .slick-next {
 right: 8px !important;
 }
+
+.leaflet-container {
+  z-index: 100 !important; /* a value lower than the GraffitoOverlay */
+}
+
+.fixed {
+  position: fixed;
+  z-index: 1330;
+}

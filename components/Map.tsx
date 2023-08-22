@@ -4,7 +4,6 @@ import {
   TileLayer,
   Marker,
   Popup,
-  Tooltip,
   useMap,
   LayersControl,
 } from 'react-leaflet';
@@ -14,16 +13,8 @@ import styles from './Map.module.scss';
 import 'leaflet/dist/leaflet.css';
 import 'node_modules/react-leaflet-cluster/lib/assets/MarkerCluster.Default.css';
 import L from 'leaflet';
-import Link from 'next/link';
 import GraffitoOverlay from './GraffitoOverlay';
-
-interface Artifact {
-  id: string;
-  title: string;
-  imageUrl: string;
-  latitude: number | null;
-  longitude: number | null;
-}
+import { Artifact } from './api';
 
 interface MapProps {
   artifacts: Artifact[];
@@ -113,7 +104,7 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
       zoom={14}
       center={[48.217, 16.3727]}
       preferCanvas={true}
-      style={{ height: '100%' }}
+      className={`${styles.mapContainer} ${isOverlayOpen ? 'no-pointer' : ''}`}
     >
       <LayersControl collapsed={false}>
         <LayersControl.BaseLayer checked name="Watercolor">
@@ -171,6 +162,13 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
           </MarkerClusterGroup>
         </LayersControl.Overlay>
       </LayersControl>
+      {/* Conditionally render the GraffitoOverlay based on isOverlayOpen state */}
+      {isOverlayOpen && selectedGraffito && (
+        <GraffitoOverlay
+          graffito={selectedGraffito}
+          onClose={closeOverlay}
+        />
+      )}
     </MapContainer>
   );
 };
