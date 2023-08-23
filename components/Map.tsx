@@ -15,6 +15,7 @@ import 'node_modules/react-leaflet-cluster/lib/assets/MarkerCluster.Default.css'
 import L from 'leaflet';
 import { Artifact } from './api';
 import dynamic from 'next/dynamic';
+import Backdrop from './Blackdrop';
 
 const GraffitoOverlay = dynamic(() => import('./GraffitoOverlay'), {
   ssr: false,
@@ -38,9 +39,34 @@ const createClusterCustomIcon: (cluster: any) => L.DivIcon = (cluster) => {
   });
 };
 
+interface MapPaneProps {
+  isOverlayOpen: boolean;
+}
 
-const MapPane = () => {
+const MapPane: React.FC<MapPaneProps> = ({ isOverlayOpen }) => {
   const map = useMap();
+
+  useEffect(() => {
+    if (isOverlayOpen) {
+      // Disable map interactions when overlay is open
+      map.dragging.disable();
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+      map.boxZoom.disable();
+      map.keyboard.disable();
+      if (map.tap) map.tap.disable(); // mobile
+    } else {
+      // Re-enable map interactions when overlay is closed
+      map.dragging.enable();
+      map.touchZoom.enable();
+      map.doubleClickZoom.enable();
+      map.scrollWheelZoom.enable();
+      map.boxZoom.enable();
+      map.keyboard.enable();
+      if (map.tap) map.tap.enable(); // mobile
+    }
+  }, [isOverlayOpen, map]);
 
   useEffect(() => {
       const saveMapState = () => {
@@ -52,7 +78,6 @@ const MapPane = () => {
 
       map.on('moveend', saveMapState);
 
-      // Cleanup the event listener when the component is unmounted
       return () => {
           map.off('moveend', saveMapState);
       };
@@ -109,8 +134,9 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
       zoom={14}
       center={[48.217, 16.3727]}
       preferCanvas={true}
-      className={`${styles.mapContainer} ${isOverlayOpen ? 'no-pointer' : ''}`}
+      className={`${styles.mapContainer} ${isOverlayOpen ? 'disable-pointer-events' : ''}`}
     >
+      <MapPane isOverlayOpen={isOverlayOpen} />
       <LayersControl collapsed={false}>
         <LayersControl.BaseLayer checked name="Watercolor">
           <TileLayer
@@ -155,27 +181,25 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
                       <button
                         onClick={() => openOverlay(artifact)}
                         className="bg-gradient-to-r from-e95095 to-7049ba text-white px-4 py-2 rounded-md mx-auto block z-10"
-                      >
-                        Graffito details
-                      </button>
-                    </Popup>
-                  </Marker>
-                );
-              }
-              return null;
-            })}
-          </MarkerClusterGroup>
-        </LayersControl.Overlay>
-      </LayersControl>
-      {/* Conditionally render the GraffitoOverlay based on isOverlayOpen state */}
-      {isOverlayOpen && selectedGraffito && (
-        <GraffitoOverlay
-          graffito={selectedGraffito}
-          onClose={closeOverlay}
-        />
-      )}
-    </MapContainer>
-  );
-};
-
-export default Map;
+                        >
+                          Graffito details
+                        </button>
+                      </Popup>
+                    </Marker>
+                  );
+                }
+                return null;
+              })}
+            </MarkerClusterGroup>
+          </LayersControl.Overlay>
+        </LayersControl>
+        {isOverlayOpen && selectedGraffito && <Backdrop onClick={closeOverlay} />}
+        {isOverlayOpen && selectedGraffito && (
+          <GraffitoOverlay graffito={selectedGraffito} onClose={closeOverlay} />
+        )}
+      </MapContainer>
+    );
+  };
+  
+  export default Map;
+  

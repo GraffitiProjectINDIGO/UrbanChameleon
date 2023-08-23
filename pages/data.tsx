@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
 import dynamic from 'next/dynamic';
+import Backdrop from '../components/Blackdrop';
 
 const GraffitoOverlay = dynamic(() => import('../components/GraffitoOverlay'), {
   ssr: false,
@@ -79,7 +80,7 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
 
   return (
       <>
-      <div className={`${styles.dataContainer} ${isOverlayOpen ? 'no-pointer' : ''}`}>
+      <div className={`${styles.dataContainer}`}>
         <Navbar />
         <div style={{ height: 'calc(100vh - 100px)', width: '100%', paddingTop: '60px', paddingLeft: '10px', paddingRight: '10px' }}>
           <DataGrid
@@ -97,10 +98,11 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
         </div>
         <Footer />
       </div>
-
-      {isOverlayOpen && selectedGraffito && (
-        <GraffitoOverlay graffito={selectedGraffito} onClose={closeOverlay} />
-      )}
+      {isOverlayOpen && selectedGraffito && <Backdrop onClick={closeOverlay} />}
+      <GraffitoOverlay
+        graffito={selectedGraffito}
+        onClose={closeOverlay}
+      />
     </>
   );
 };

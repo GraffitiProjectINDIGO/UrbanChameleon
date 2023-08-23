@@ -354,7 +354,7 @@ right: 8px !important;
 }
 
 .leaflet-container {
-  z-index: 100 !important; /* a value lower than the GraffitoOverlay */
+  z-index: 100 !important; 
 }
 
 .fixed {

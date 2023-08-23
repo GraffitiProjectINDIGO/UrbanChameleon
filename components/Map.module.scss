@@ -6,11 +6,6 @@
   height: 100%;
 }
 
-.no-pointer {
+.disable-pointer-events {
   pointer-events: none;
-}
-
-
-.overlay-active {
-  pointer-events: auto;
 }
