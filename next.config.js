@@ -1,4 +1,5 @@
 const withTM = require('next-transpile-modules')(['react-leaflet-cluster']);
+const webpack = require('webpack');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -9,8 +10,16 @@ const nextConfig = {
   },
 
   webpack: (config) => {
-    // Fixes npm packages that depend on `fs` module
+    // Resium specific configuration
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        CESIUM_BASE_URL: JSON.stringify('cesium'),
+      }),
+    );
+
+    // Your original configuration
     config.resolve.fallback = { fs: false };
+
     return config;
   },
 };
