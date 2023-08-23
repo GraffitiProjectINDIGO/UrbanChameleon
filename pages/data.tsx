@@ -79,7 +79,7 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
 
   return (
       <>
-      <div className={styles.dataContainer}>
+      <div className={`${styles.dataContainer} ${isOverlayOpen ? 'no-pointer' : ''}`}>
         <Navbar />
         <div style={{ height: 'calc(100vh - 100px)', width: '100%', paddingTop: '60px', paddingLeft: '10px', paddingRight: '10px' }}>
           <DataGrid

@@ -9,3 +9,8 @@
 .no-pointer {
   pointer-events: none;
 }
+
+
+.overlay-active {
+  pointer-events: auto;
+}

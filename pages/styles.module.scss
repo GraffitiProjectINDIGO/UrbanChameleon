@@ -165,3 +165,11 @@
 .iconText svg {
   font-size: 48px;
 }
+
+.no-pointer {
+  pointer-events: none;
+}
+
+.overlay-active {
+  pointer-events: auto;
+}
