@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/TwoDMap.module.scss';
 
 const DynamicMap = dynamic(() => import('../components/Map'), {
-  ssr: false, 
+  ssr: false,
 });
 
 export default function twoMap() {
@@ -32,7 +32,6 @@ export default function twoMap() {
         <DynamicMap artifacts={artifacts} />
       </div>
       <Footer />
-    </div> 
-  
+    </div>
   );
 }

@@ -8,7 +8,7 @@ export interface Artifact {
   types: string;
   startDate: string;
   endDate: string;
-  colors: string[]; 
+  colors: string[];
   area: number | null;
   graffitist?: string;
 }
@@ -25,19 +25,23 @@ export async function getArtifactsData(): Promise<Artifact[]> {
       if (feature.geometry?.type === 'Point') {
         coordinates = feature.geometry?.coordinates || [];
       }
-    
-      const colorTypes = ["red", "black", "white"];
+
+      const colorTypes = ['red', 'black', 'white'];
       const colors = feature.types
         ? feature.types
             .filter((type: any) => colorTypes.includes(type.label))
             .map((colorType: any) => colorType.label)
         : [];
 
-      const areaType = feature.types?.find((type: any) => type.label === "area");
+      const areaType = feature.types?.find(
+        (type: any) => type.label === 'area',
+      );
       const area = areaType ? areaType.value : null;
 
       const graffitistRelation = artifact.relations?.find(
-        (relation: any) => relation.relationType === "crm:P52 has current owner" && relation.relationSystemClass === "person"
+        (relation: any) =>
+          relation.relationType === 'crm:P52 has current owner' &&
+          relation.relationSystemClass === 'person',
       );
       const graffitist = graffitistRelation?.label || '';
 
@@ -51,21 +55,23 @@ export async function getArtifactsData(): Promise<Artifact[]> {
         types: feature.types?.[0]?.label || '',
         startDate: feature.when?.timespans?.[0]?.start?.earliest || '',
         endDate: feature.when?.timespans?.[0]?.end?.earliest || '',
-        colors: colors  || '',
-        area: area  || '',
-        graffitist: graffitist  || '',
+        colors: colors || '',
+        area: area || '',
+        graffitist: graffitist || '',
       };
     });
     return artifacts;
   } catch (error) {
     console.error(error);
-    throw error; 
+    throw error;
   }
 }
 
 export async function getGraffitoDetails(id: string): Promise<Artifact> {
   try {
-    const response = await fetch(`https://indigo.openatlas.eu/api/system_class/artifact/${id}`);
+    const response = await fetch(
+      `https://indigo.openatlas.eu/api/system_class/artifact/${id}`,
+    );
     const artifactData = await response.json();
 
     if (!artifactData.features || artifactData.features.length === 0) {
@@ -96,18 +102,20 @@ export async function getGraffitoDetails(id: string): Promise<Artifact> {
       coordinates = feature.geometry?.coordinates || [];
     }
 
-    const colorTypes = ["red", "black", "white"];
+    const colorTypes = ['red', 'black', 'white'];
     const colors = feature.types
       ? feature.types
           .filter((type: any) => colorTypes.includes(type.label))
           .map((colorType: any) => colorType.label)
       : [];
 
-    const areaType = feature.types?.find((type: any) => type.label === "area");
+    const areaType = feature.types?.find((type: any) => type.label === 'area');
     const area = areaType ? areaType.value : null;
 
     const graffitistRelation = artifactData.relations?.find(
-      (relation: any) => relation.relationType === "crm:P52 has current owner" && relation.relationSystemClass === "person"
+      (relation: any) =>
+        relation.relationType === 'crm:P52 has current owner' &&
+        relation.relationSystemClass === 'person',
     );
     const graffitist = graffitistRelation?.label || '';
 
@@ -121,9 +129,9 @@ export async function getGraffitoDetails(id: string): Promise<Artifact> {
       types: feature.types?.[0]?.label || '',
       startDate: feature.when?.timespans?.[0]?.start?.earliest || '',
       endDate: feature.when?.timespans?.[0]?.end?.earliest || '',
-      colors: colors  || '',
-      area: area  || '',
-      graffitist: graffitist  || '',
+      colors: colors || '',
+      area: area || '',
+      graffitist: graffitist || '',
     };
     return graffito;
   } catch (err) {

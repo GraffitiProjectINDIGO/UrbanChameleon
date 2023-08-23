@@ -1,15 +1,15 @@
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
-import React, { useState }  from 'react';
+import dynamic from 'next/dynamic';
+import React, { useState } from 'react';
 import { Artifact, getArtifactsData } from '../components/api';
+import Backdrop from '../components/Blackdrop';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
-import dynamic from 'next/dynamic';
-import Backdrop from '../components/Blackdrop';
 
 const GraffitoOverlay = dynamic(() => import('../components/GraffitoOverlay'), {
   ssr: false,
-  loading: () => <p>Loading...</p>
+  loading: () => <p>Loading...</p>,
 });
 
 interface TablePageProps {
@@ -23,17 +23,16 @@ const columns: GridColDef[] = [
     field: 'graffitist',
     headerName: 'Graffitist',
     flex: 1,
-    resizable: true
+    resizable: true,
   },
   { field: 'types', headerName: 'Type', flex: 2, resizable: true },
   {
     field: 'colors',
     headerName: 'Colors',
     flex: 1,
-    renderCell: (params: GridCellParams) => (
-      Array.isArray(params.value) ? params.value.join(', ') : ''
-    ),
-    resizable: true
+    renderCell: (params: GridCellParams) =>
+      Array.isArray(params.value) ? params.value.join(', ') : '',
+    resizable: true,
   },
   {
     field: 'imageUrl',
@@ -45,17 +44,17 @@ const columns: GridColDef[] = [
         alt={params.row.title as string}
         style={{ width: '100%' }}
         onError={(e) => {
-          e.currentTarget.style.display = 'none'; 
+          e.currentTarget.style.display = 'none';
         }}
       />
     ),
-    resizable: true
+    resizable: true,
   },
   {
     field: 'area',
     headerName: 'Area',
     flex: 1,
-    resizable: true
+    resizable: true,
   },
   { field: 'longitude', headerName: 'Longitude', flex: 1, resizable: true },
   { field: 'latitude', headerName: 'Latitude', flex: 1, resizable: true },
@@ -66,7 +65,9 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
     return <p>Loading graffiti data...</p>;
   }
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [selectedGraffito, setSelectedGraffito] = useState<Artifact | null>(null);
+  const [selectedGraffito, setSelectedGraffito] = useState<Artifact | null>(
+    null,
+  );
 
   const openOverlay = (artifact: Artifact) => {
     setSelectedGraffito(artifact);
@@ -79,17 +80,25 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
   };
 
   return (
-      <>
+    <>
       <div className={`${styles.dataContainer}`}>
         <Navbar />
-        <div style={{ height: 'calc(100vh - 100px)', width: '100%', paddingTop: '60px', paddingLeft: '10px', paddingRight: '10px' }}>
+        <div
+          style={{
+            height: 'calc(100vh - 100px)',
+            width: '100%',
+            paddingTop: '60px',
+            paddingLeft: '10px',
+            paddingRight: '10px',
+          }}
+        >
           <DataGrid
             rows={artifacts}
             columns={columns}
             disableColumnMenu
             disableRowSelectionOnClick
             onRowClick={(param) => {
-              const artifact = artifacts.find(a => a.id === param.id);
+              const artifact = artifacts.find((a) => a.id === param.id);
               if (artifact) {
                 openOverlay(artifact);
               }
@@ -99,10 +108,7 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
         <Footer />
       </div>
       {isOverlayOpen && selectedGraffito && <Backdrop onClick={closeOverlay} />}
-      <GraffitoOverlay
-        graffito={selectedGraffito}
-        onClose={closeOverlay}
-      />
+      <GraffitoOverlay graffito={selectedGraffito} onClose={closeOverlay} />
     </>
   );
 };
@@ -116,7 +122,7 @@ export async function getStaticProps() {
       props: {
         artifacts,
       },
-      revalidate: 60, 
+      revalidate: 60,
     };
   } catch (error) {
     console.error('Error fetching artifacts data:', error);

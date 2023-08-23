@@ -1,13 +1,12 @@
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import React, { useEffect } from 'react';
 import Slider from 'react-slick';
 import styles from './Carousel.module.scss';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 
 interface CarouselProps {
   artifacts: { id: string; imageUrl: string; title: string }[];
 }
-
 
 const MyCarousel: React.FC<CarouselProps> = ({ artifacts }) => {
   const settings = {
@@ -25,27 +24,31 @@ const MyCarousel: React.FC<CarouselProps> = ({ artifacts }) => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowRight") {
+      if (event.key === 'ArrowRight') {
         sliderRef.current?.slickNext();
-      } else if (event.key === "ArrowLeft") {
+      } else if (event.key === 'ArrowLeft') {
         sliderRef.current?.slickPrev();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
   return (
-    <div >
+    <div>
       <Slider {...settings} ref={sliderRef}>
         {artifacts.map((artifact) => (
           <div key={artifact.id} className={styles.slide}>
             {artifact.imageUrl && (
-              <img src={artifact.imageUrl} alt={artifact.title} className={styles.image} />
+              <img
+                src={artifact.imageUrl}
+                alt={artifact.title}
+                className={styles.image}
+              />
             )}
           </div>
         ))}

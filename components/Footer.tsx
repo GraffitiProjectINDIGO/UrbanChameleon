@@ -5,10 +5,15 @@ const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <p>
-        &copy; 2021-2023 {' '}<a href="https://projectindigo.eu/"
+        &copy; 2021-2023{' '}
+        <a
+          href="https://projectindigo.eu/"
           target="_blank"
           rel="noopener noreferrer"
-        >Project INDIGO</a>. Funded by{' '}
+        >
+          Project INDIGO
+        </a>
+        . Funded by{' '}
         <a
           href="https://www.oeaw.ac.at/foerderungen/foerderprogramme/heritage-science-austria"
           target="_blank"

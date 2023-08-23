@@ -1,70 +1,69 @@
 .themeSwitcher {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    transition: color 0.3s;
-  
-    &:hover {
-      text-decoration: underline;
-      font-weight: bold;
-    }
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.3s;
+
+  &:hover {
+    text-decoration: underline;
+    font-weight: bold;
   }
-  
-  .toggleInput {
-    display: none;
-  }
-  
-  .toggleLabel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    cursor: pointer;
-    background-color: #ccc;
-    border-radius: 34px;
-    transition: background-color 0.4s;
-  }
-  
-  .toggleLabel .sunIcon,
-  .toggleLabel .moonIcon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #fff; 
-  }
-  
-  .sunIcon {
-    left: 10px;
-  }
-  
-  .moonIcon {
-    right: 10px;
-  }
-  
-  .slider {
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    top: 4px;
-    left: 4px;
-    right: 4px;
-    bottom: 4px;
-    background-color: white;
-    border-radius: 100%;
-    transition: transform 0.4s;
-  }
-  
-  .toggleInput:checked + .toggleLabel {
-    background-color: #555;
-  }
-  
-  .toggleInput:checked + .toggleLabel .slider {
-    transform: translateX(30px);
-  }
-  
+}
+
+.toggleInput {
+  display: none;
+}
+
+.toggleLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: background-color 0.4s;
+}
+
+.toggleLabel .sunIcon,
+.toggleLabel .moonIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.sunIcon {
+  left: 10px;
+}
+
+.moonIcon {
+  right: 10px;
+}
+
+.slider {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 100%;
+  transition: transform 0.4s;
+}
+
+.toggleInput:checked + .toggleLabel {
+  background-color: #555;
+}
+
+.toggleInput:checked + .toggleLabel .slider {
+  transform: translateX(30px);
+}
