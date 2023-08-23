@@ -1,38 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Urban Chameleon
 
-## Getting Started
+Welcome to the repository of Urban Chameleon, an online platform conceptualised for the analysis and visualisation of graffiti and the graffiti-scape at the Donaukanal in Vienna, Austria. This endeavour is a constituent of the broader initiative, Project INDIGO.
 
-First, run the development server:
+![Urban Chameleon Logo](public\images\Chameleon.png)
+
+## Table of Contents
+
+- [Urban Chameleon](#urban-chameleon)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Functionalities](#functionalities)
+  - [Installation Procedure](#installation-procedure)
+  - [Components](#components)
+    - [Resium Component Details](#resium-component-details)
+    - [ThemeSwitcher Component Details](#themeswitcher-component-details)
+  - [Contribution](#contribution)
+  - [Licensing](#licensing)
+
+## Overview
+
+The Urban Chameleon platform affords users a distinctive perspective on the graffiti in Vienna's Donaukanal. Constructed utilising Next.js and TypeScript and integrated with the Resium library, the platform offers a sophisticated user experience. For a comprehensive exploration and further details, kindly visit our official website [urbanchameleon.eu](https://urbanchameleon.eu).
+
+## Functionalities
+
+- **Interactive Graffiti Viewer**: Delve into the graffiti-scape of Donaukanal with our viewer, underpinned by Resium.
+- **Dynamic Theme Switcher**: Personalise your visual experience with our toggle feature, facilitating both light and dark mode.
+- **Adaptive Design**: Conceived for an array of devices, both desktop and mobile.
+
+## Installation Procedure
+
+1. Duplicate the repository:
+   ```bash
+   git clone https://github.com/your_username/urban-chameleon.git
+   ```
+2. Navigate to the project directory:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+cd urban-chameleon
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Install the requisite dependencies using pnpm:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+4. Alternatively, should you prefer utilising yarn:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+5. Construct the application:
 
-## Learn More
+```bash
+Copy codepnpm build
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Activate the application:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+7. Utilisation
+   Access the application via http://localhost:3000 in your web browser.
 
-## Deploy on Vercel
+## Components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Resium:** An interactive viewer purposed for the display of graffiti data.
+- **ThemeSwitcher:** A toggle mechanism for the alteration of the application's theme between light and dark modes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Resium Component Details
+
+- Exhibits graffiti located at the Donaukanal in Vienna.
+- Employs the resium library, a React wrapper for the cesium library.
+  View Code
+
+### ThemeSwitcher Component Details
+
+- Offers a toggle mechanism for theme personalisation.
+- Employs the next-themes library for theme management.
+  View Code
+
+## Contribution
+
+Contributions are heartily welcomed. Should you wish to contribute, kindly adhere to our contribution guidelines.
+
+## Licensing
+
+Content on this website is licensed under CC BY-SA 4.0.
