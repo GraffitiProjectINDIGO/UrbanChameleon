@@ -28,12 +28,13 @@ The Urban Chameleon platform affords users a distinctive perspective on the graf
 ## Installation Procedure
 
 1. Duplicate the repository:
-   ```bash
-   git clone https://github.com/your_username/urban-chameleon.git
-   ```
+```bash
+git clone https://github.com/GraffitiProjectINDIGO/onlineplatform.git
+```
+
 2. Navigate to the project directory:
   ```bash
-  cd urban-chameleon
+  cd onlineplatform
   ```
 
 3. Install the requisite dependencies using pnpm:
