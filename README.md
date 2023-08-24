@@ -58,6 +58,7 @@ git clone https://github.com/GraffitiProjectINDIGO/onlineplatform.git
   ```
 
 6. Utilisation:
+
 Access the application via http://localhost:3000 in your web browser.
 
 ## Components
