@@ -2,8 +2,6 @@
 
 Welcome to the repository of Urban Chameleon, an online platform conceptualised for the analysis and visualisation of graffiti and the graffiti-scape at the Donaukanal in Vienna, Austria. This endeavour is a constituent of the broader initiative, Project INDIGO.
 
-![Urban Chameleon Logo](public\images\Chameleon.png)
-
 ## Table of Contents
 
 - [Urban Chameleon](#urban-chameleon)
@@ -35,33 +33,33 @@ The Urban Chameleon platform affords users a distinctive perspective on the graf
    ```
 2. Navigate to the project directory:
 
-```bash
-cd urban-chameleon
-```
+  ```bash
+  cd urban-chameleon
+  ```
 
 3. Install the requisite dependencies using pnpm:
 
-```bash
-pnpm install
-```
+  ```bash
+  pnpm install
+  ```
 
 4. Alternatively, should you prefer utilising yarn:
 
-```bash
-yarn install
-```
+  ```bash
+  yarn install
+  ```
 
 5. Construct the application:
-
-```bash
-Copy codepnpm build
-```
+  
+  ```bash
+  Copy codepnpm build
+  ```
 
 6. Activate the application:
 
-```bash
-pnpm run dev
-```
+  ```bash
+  pnpm run dev
+  ```
 
 7. Utilisation
    Access the application via http://localhost:3000 in your web browser.
