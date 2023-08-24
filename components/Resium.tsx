@@ -1,7 +1,11 @@
 import './Resium.module.scss';
-import { Cartesian3, Cesium3DTileset, Ion } from 'cesium';
+import { Cartesian3, Ion, IonResource } from 'cesium';
 import React, { useEffect, useRef, useState } from 'react';
-import { Entity, Viewer } from 'resium';
+import {
+  Cesium3DTileset as ResiumCesium3DTileset,
+  Entity,
+  Viewer,
+} from 'resium';
 import { Artifact } from './api';
 
 require('dotenv').config();
@@ -30,19 +34,25 @@ export default function Resium({ artifacts }: ResiumProps) {
         console.error('CESIUM_ACCESS_TOKEN is not set in .env');
       }
 
-      viewer.camera.setView({
+      /*  viewer.camera.setView({
         destination: Cartesian3.fromDegrees(16.3727, 48.217, 500),
         orientation: {
           heading: 0.0,
           pitch: -Math.PI / 4.0,
           roll: 0.0,
         },
-      });
+      }); */
     }
   }, [viewerRef]);
 
   return showViewer ? (
-    <Viewer full className="viewer-container" ref={viewerRef}>
+    <Viewer className="viewer-container" ref={viewerRef}>
+      <ResiumCesium3DTileset
+        url={IonResource.fromAssetId(2197615)}
+        onReady={(tileset) => {
+          ref.current?.cesiumElement?.zoomTo(tileset);
+        }}
+      />
       {artifacts &&
         artifacts.map((artifact) => {
           if (artifact.latitude !== null && artifact.longitude !== null) {

@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
+import { Artifact, getArtifactsData } from '../components/api';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 

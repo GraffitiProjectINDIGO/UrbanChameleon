@@ -6,6 +6,8 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import styles from './styles.module.scss';
 
+require('dotenv').config();
+
 const Grid = styled.section`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
