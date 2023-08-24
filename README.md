@@ -32,31 +32,26 @@ The Urban Chameleon platform affords users a distinctive perspective on the graf
    git clone https://github.com/your_username/urban-chameleon.git
    ```
 2. Navigate to the project directory:
-
   ```bash
   cd urban-chameleon
   ```
 
 3. Install the requisite dependencies using pnpm:
-
   ```bash
   pnpm install
   ```
 
 4. Alternatively, should you prefer utilising yarn:
-
   ```bash
   yarn install
   ```
 
 5. Construct the application:
-  
   ```bash
   Copy codepnpm build
   ```
 
 6. Activate the application:
-
   ```bash
   pnpm run dev
   ```
