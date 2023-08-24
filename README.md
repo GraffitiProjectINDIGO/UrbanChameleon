@@ -37,28 +37,28 @@ git clone https://github.com/GraffitiProjectINDIGO/onlineplatform.git
   cd onlineplatform
   ```
 
-3. Install the requisite dependencies using pnpm:
+3.1 Install the requisite dependencies using pnpm:
   ```bash
   pnpm install
   ```
 
-4. Alternatively, should you prefer utilising yarn:
+3.2 Alternatively, should you prefer utilising yarn:
   ```bash
   yarn install
   ```
 
-5. Construct the application:
+4. Construct the application:
   ```bash
-  Copy codepnpm build
+  pnpm build
   ```
 
-6. Activate the application:
+5. Activate the application:
   ```bash
   pnpm run dev
   ```
 
-7. Utilisation
-   Access the application via http://localhost:3000 in your web browser.
+6. Utilisation:
+Access the application via http://localhost:3000 in your web browser.
 
 ## Components
 
