@@ -2,6 +2,7 @@ import './Resium.module.scss';
 import { Cartesian3, Cesium3DTileset, Ion } from 'cesium';
 import React, { useEffect, useRef, useState } from 'react';
 import { Entity, Viewer } from 'resium';
+import { Artifact } from './api';
 
 require('dotenv').config();
 
