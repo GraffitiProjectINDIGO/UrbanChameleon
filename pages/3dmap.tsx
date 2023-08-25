@@ -27,12 +27,10 @@ export default function threeDMap() {
       <Head>
         <link rel="stylesheet" href="cesium/Widgets/widgets.css" />
       </Head>
-      <div>
-        <Navbar />
-        <DynamicResium artifacts={artifacts} />
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-white">
-          <Footer />
-        </div>
+      <Navbar />
+      <DynamicResium artifacts={artifacts} />
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white">
+        <Footer />
       </div>
     </div>
   );
