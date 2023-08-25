@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+const fs = require('fs');
+const dir = '/vercel/output/static/cesium';
+
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
