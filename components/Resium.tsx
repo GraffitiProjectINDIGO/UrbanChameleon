@@ -19,6 +19,7 @@ export default function Resium({ artifacts }: ResiumProps) {
   const tilesetRef = useRef<any>(null);
   const [showTileset, setShowTileset] = useState(true);
   const [showEntities, setShowEntities] = useState(true);
+  const [fetchedData, setFetchedData] = useState<any>(null);
 
   useEffect(() => {
     setShowViewer(true);
@@ -26,9 +27,16 @@ export default function Resium({ artifacts }: ResiumProps) {
   }, []);
 
   useEffect(() => {
+    // Fetch data from the API
+    fetch('/api/cesium')
+      .then((response) => response.json())
+      .then((data) => setFetchedData(data))
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);
+
+  useEffect(() => {
     if (viewerRef.current && viewerRef.current.cesiumElement) {
       const viewer = viewerRef.current.cesiumElement;
-      console.log(viewer.entities.values);
 
       if (process.env.CESIUM_ACCESS_TOKEN) {
         Ion.defaultAccessToken = process.env.CESIUM_ACCESS_TOKEN;
