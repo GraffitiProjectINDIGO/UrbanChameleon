@@ -404,6 +404,8 @@ video {
   right: 8px !important;
 }
 
+/* Leaflet styles */
+
 .leaflet-container {
   z-index: 100 !important;
 }
@@ -413,7 +415,19 @@ video {
   z-index: 1330;
 }
 
-.viewer-container {
-  padding-top: 50px;
-  height: 76.7vw;
+/* Cesium styles */
+
+.cesium-viewer-toolbar button {
+  background: linear-gradient(135deg, #e95095, #7049ba) !important;
+}
+
+.cesium-viewer-animationContainer,
+.cesium-viewer-timelineContainer,
+.cesium-viewer-bottom {
+  display: none;
+}
+
+.resium-container {
+  height: 80vh !important;
+  margin-top: 50px !important;
 }
