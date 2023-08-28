@@ -34,8 +34,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# cesium
-/public/cesium
-
 # environments
 .env
