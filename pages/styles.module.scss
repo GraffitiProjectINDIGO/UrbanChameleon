@@ -55,6 +55,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-left: 20 px;
+  margin-right: 20 px;
 }
 
 // Styles for the Landing page logo and title
@@ -65,6 +67,9 @@
   justify-content: center;
   gap: 10px;
   margin-top: 40px;
+  @media (max-width: 768px) {
+    margin-top: 70px;
+  }
 }
 
 .chameleonImage {
@@ -78,11 +83,30 @@
   line-height: 1.2;
 }
 
+// Styles for the text of the Landing page
+
 .title {
   grid-column: 1 / -1;
   text-align: center;
   margin-top: 30px;
   margin-bottom: 10px;
+  @media (max-width: 768px) {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+  }
+}
+
+.description {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  grid-column: 1 / -1;
+  @media (max-width: 768px) {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+  }
 }
 
 // Style for the footer on the landing page
@@ -102,13 +126,6 @@
   align-items: center;
   grid-column: 1 / -1;
   margin-bottom: 35px;
-}
-
-.description {
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 24px;
-  grid-column: 1 / -1;
 }
 
 .iconText {

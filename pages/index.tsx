@@ -14,11 +14,11 @@ const Grid = styled.section`
   justify-content: center;
   grid-gap: 20px;
   background-color: #f6f6f6;
-  padding: 20px;
-
+  padding: 10px;
+  /*
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-  }
+  } */
 `;
 
 const LogoContainer = styled.div`
@@ -34,7 +34,7 @@ const StyledImage = styled.img`
   max-width: 100%;
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 50%;
   }
 `;
 

@@ -6,7 +6,9 @@ import ThemeSwitch from './ThemeSwitcher';
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <div className={styles.brand}>UrbanChameleon</div>
+      <div className={styles.brand}>
+        <Link href="/">UrbanChameleon</Link>
+      </div>
       <div className={styles.links}>
         <Link href="/">Home</Link>
         <Link href="/2dmap">2D Map</Link>
