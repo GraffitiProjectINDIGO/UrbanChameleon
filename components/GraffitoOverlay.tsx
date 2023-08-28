@@ -29,7 +29,7 @@ const GraffitoOverlay: React.FC<GraffitoOverlayProps> = ({
             </h1>
             <button
               onClick={onClose}
-              className="bg-navbar-gradient text-white px-4 py-2 rounded-full"
+              className="bg-navbar-gradient text-white px-2 py-2 rounded-full"
             >
               X
             </button>
@@ -37,10 +37,10 @@ const GraffitoOverlay: React.FC<GraffitoOverlayProps> = ({
           <img
             src={graffito.imageUrl}
             alt={graffito.title}
-            className="w-full h-auto rounded-md mb-4"
+            className="w-full h-auto rounded-md mb-4 mt-8"
           />
 
-          <div className="flex">
+          <div className="flex mt-8">
             <div className="text-black flex-1">
               <p>
                 <strong>Description:</strong> {graffito.description}

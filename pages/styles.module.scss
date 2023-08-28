@@ -14,12 +14,6 @@
   min-height: 100vh;
 }
 
-.dataContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 .content {
   flex: 1;
 }
@@ -49,7 +43,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1; 
+  z-index: -1;
   width: 100%;
   height: 25vh;
 }
@@ -62,10 +56,10 @@
 }
 
 .chameleonContainer {
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  gap: 10px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin-top: 40px;
 }
 
@@ -116,7 +110,6 @@
   margin: 0 10px;
   font-size: 24px;
   position: relative;
-
 }
 
 .iconText::before {
@@ -149,8 +142,7 @@
   gap: 20px;
 }
 
-
-@media (min-width: 600px) { 
+@media (min-width: 600px) {
   .logosGrid {
     justify-content: center;
   }
@@ -172,4 +164,18 @@
 
 .overlay-active {
   pointer-events: auto;
+}
+
+// Styles for data.tsx page
+
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 576px) {
+    font-size: 0.7rem;
+  }
 }

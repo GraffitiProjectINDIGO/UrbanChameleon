@@ -19,9 +19,13 @@
   font-size: 1.5rem;
   @media (max-width: 768px) {
     font-size: 1.2rem;
+    text-align: center;
   }
   @media (max-width: 576px) {
     font-size: 1rem;
+    white-space: normal;
+    max-width: 100px;
+    text-align: center;
   }
 }
 .brand a:hover {
@@ -32,6 +36,9 @@
 .links {
   display: flex;
   gap: 3rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
   @media (max-width: 768px) {
     gap: 2rem;
     a {
@@ -49,6 +56,7 @@
 .links a {
   color: #fff;
   text-decoration: none;
+  line-height: 1.2;
 }
 
 .links a:hover {
