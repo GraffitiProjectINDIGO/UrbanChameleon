@@ -1,13 +1,5 @@
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
-import os from 'os';
-
-const fs = require('fs');
-const dir = `${os.tmpdir()}/cesium`;
-
-if (!fs.existsSync(dir)) {
-  fs.mkdirSync(dir, { recursive: true });
-}
 
 export default async function handler(
   req: NextApiRequest,
@@ -32,8 +24,10 @@ export default async function handler(
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
+      res.status(500).json({ error: error.message });
     } else {
       console.error('An unknown error occurred');
+      res.status(500).json({ error: 'An unknown error occurred' });
     }
   }
 }
