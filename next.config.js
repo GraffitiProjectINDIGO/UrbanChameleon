@@ -9,7 +9,7 @@ const nextConfig = {
     styledComponents: true,
   },
 
-  webpack: (config) => {
+  /* webpack: (config) => {
     // Resium specific configuration
     config.plugins.push(
       new webpack.DefinePlugin({
@@ -20,7 +20,7 @@ const nextConfig = {
     config.resolve.fallback = { fs: false };
 
     return config;
-  },
+  },*/
 };
 
 module.exports = withTM(nextConfig);

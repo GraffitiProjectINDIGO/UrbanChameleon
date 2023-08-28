@@ -1,4 +1,4 @@
-import { Cartesian3 } from 'cesium';
+/* import { Cartesian3 } from 'cesium';
 import React, { useEffect, useRef, useState } from 'react';
 import { Entity, Viewer } from 'resium';
 import { Artifact } from './api';
@@ -37,3 +37,4 @@ export default function Resium({ artifacts }: ResiumProps) {
     </div>
   );
 }
+ */

@@ -5,9 +5,9 @@ import { Artifact, getArtifactsData } from '../components/api';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
-const DynamicResium = dynamic(() => import('../components/Resium'), {
+/* const DynamicResium = dynamic(() => import('../components/Resium'), {
   ssr: false,
-});
+}); */
 
 export default function threeDMap() {
   const [artifacts, setArtifacts] = useState<Artifact[]>([]);
@@ -28,7 +28,7 @@ export default function threeDMap() {
         <link rel="stylesheet" href="cesium/Widgets/widgets.css" />
       </Head>
       <Navbar />
-      <DynamicResium artifacts={artifacts} />
+      {/*  <DynamicResium artifacts={artifacts} /> */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white">
         <Footer />
       </div>
