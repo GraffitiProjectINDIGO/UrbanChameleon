@@ -55,7 +55,7 @@ const GraffitoOverlay: React.FC<GraffitoOverlayProps> = ({
                 <strong>End Date of Visibilty:</strong> {graffito.endDate}
               </p>
               <p>
-                <strong>Colors used:</strong> {graffito.colors}
+                <strong>Colors used:</strong> {graffito.colours}
               </p>
               <p>
                 <strong>Area covered:</strong> {graffito.area}

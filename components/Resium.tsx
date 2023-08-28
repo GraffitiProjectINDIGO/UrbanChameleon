@@ -13,8 +13,8 @@ export default function Resium({ artifacts }: ResiumProps) {
   const [showViewer, setShowViewer] = useState(false);
   const viewerRef = useRef<any>(null);
   /* const tilesetRef = useRef<any>(null); */
-  const [showTileset, setShowTileset] = useState(true);
-  const [showEntities, setShowEntities] = useState(true);
+  /*   const [showTileset, setShowTileset] = useState(true);
+   */ const [showEntities, setShowEntities] = useState(true);
   /* const [fetchedData, setFetchedData] = useState<any>(null); */
 
   useEffect(() => {

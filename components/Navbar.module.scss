@@ -17,6 +17,12 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 1.5rem;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
 }
 .brand a:hover {
   text-decoration: underline;
@@ -26,6 +32,18 @@
 .links {
   display: flex;
   gap: 3rem;
+  @media (max-width: 768px) {
+    gap: 2rem;
+    a {
+      font-size: 0.9rem;
+    }
+  }
+  @media (max-width: 576px) {
+    gap: 1rem;
+    a {
+      font-size: 0.8rem;
+    }
+  }
 }
 
 .links a {

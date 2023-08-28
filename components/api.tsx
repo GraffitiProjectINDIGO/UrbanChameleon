@@ -8,7 +8,7 @@ export interface Artifact {
   types: string;
   startDate: string;
   endDate: string;
-  colors: string[];
+  colours: string[];
   area: number | null;
   graffitist?: string;
 }
@@ -55,7 +55,7 @@ export async function getArtifactsData(): Promise<Artifact[]> {
         types: feature.types?.[0]?.label || '',
         startDate: feature.when?.timespans?.[0]?.start?.earliest || '',
         endDate: feature.when?.timespans?.[0]?.end?.earliest || '',
-        colors: colors || '',
+        colours: colors || '',
         area: area || '',
         graffitist: graffitist || '',
       };
@@ -86,7 +86,7 @@ export async function getGraffitoDetails(id: string): Promise<Artifact> {
         types: '',
         startDate: '',
         endDate: '',
-        colors: [],
+        colours: [],
         area: null,
         graffitist: '',
       };
@@ -129,7 +129,7 @@ export async function getGraffitoDetails(id: string): Promise<Artifact> {
       types: feature.types?.[0]?.label || '',
       startDate: feature.when?.timespans?.[0]?.start?.earliest || '',
       endDate: feature.when?.timespans?.[0]?.end?.earliest || '',
-      colors: colors || '',
+      colours: colors || '',
       area: area || '',
       graffitist: graffitist || '',
     };
