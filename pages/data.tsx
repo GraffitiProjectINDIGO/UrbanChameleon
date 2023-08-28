@@ -1,6 +1,11 @@
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridCellParams,
+  GridColDef,
+  GridColumnHeaderParams,
+} from '@mui/x-data-grid';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 import { Artifact, getArtifactsData } from '../components/api';
