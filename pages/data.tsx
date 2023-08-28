@@ -172,7 +172,6 @@ const TablePage: React.FC<TablePageProps> = ({ artifacts }) => {
           }}
         >
           <DataGrid
-            pageSize={20}
             rows={artifacts}
             columns={columns}
             disableColumnMenu

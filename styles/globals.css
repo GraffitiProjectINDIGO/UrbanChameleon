@@ -397,11 +397,11 @@ video {
 }
 
 .slick-prev {
-  left: 8px !important;
+  left: 0px !important;
 }
 
 .slick-next {
-  right: 8px !important;
+  right: 0px !important;
 }
 
 /* Leaflet styles */

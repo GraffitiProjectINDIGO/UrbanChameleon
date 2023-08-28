@@ -34,6 +34,8 @@
   flex: 1;
 }
 
+// Styles for the Landing page colourful triangle
+
 .triangleBackground {
   position: relative;
   margin-top: 0px;
@@ -55,6 +57,8 @@
   justify-content: center;
 }
 
+// Styles for the Landing page logo and title
+
 .chameleonContainer {
   display: flex;
   align-items: center;
@@ -74,6 +78,15 @@
   line-height: 1.2;
 }
 
+.title {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+// Style for the footer on the landing page
+
 .footer {
   flex-shrink: 0;
   position: sticky;
@@ -81,12 +94,7 @@
   justify-content: center;
 }
 
-.title {
-  grid-column: 1 / -1;
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
+// Styles for the Logos on the landing page
 
 .iconTextContainer {
   display: flex;
