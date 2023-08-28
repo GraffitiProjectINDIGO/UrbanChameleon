@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
+import os from 'os';
 
 const fs = require('fs');
-const dir = '/vercel/output/static/cesium';
+const dir = `${os.tmpdir()}/cesium`;
 
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, { recursive: true });
