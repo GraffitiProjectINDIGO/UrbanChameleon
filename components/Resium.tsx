@@ -1,26 +1,26 @@
-import { Cartesian3, Ion, IonResource } from 'cesium';
+import { Cartesian3 } from 'cesium';
 import React, { useEffect, useRef, useState } from 'react';
 import { Entity, Viewer } from 'resium';
 import { Artifact } from './api';
 
-require('dotenv').config();
-
+/* require('dotenv').config();
+ */
 interface ResiumProps {
   artifacts?: Artifact[];
 }
 
 export default function Resium({ artifacts }: ResiumProps) {
-  const [showViewer, setShowViewer] = useState(false);
-  const viewerRef = useRef<any>(null);
+  /*const [showViewer, setShowViewer] = useState(false);
+  const viewerRef = useRef<any>(null); */
   /* const tilesetRef = useRef<any>(null); */
   /*   const [showTileset, setShowTileset] = useState(true);
    */ const [showEntities, setShowEntities] = useState(true);
   /* const [fetchedData, setFetchedData] = useState<any>(null); */
-
+  /*
   useEffect(() => {
     setShowViewer(true);
     return () => setShowViewer(false);
-  }, []);
+  }, []); */
 
   /* useEffect(() => {
     fetch('/api/cesium')
@@ -29,7 +29,7 @@ export default function Resium({ artifacts }: ResiumProps) {
       .catch((error) => console.error('Error fetching data:', error));
   }, []); */
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (viewerRef.current && viewerRef.current.cesiumElement) {
       const viewer = viewerRef.current.cesiumElement;
 
@@ -48,7 +48,7 @@ export default function Resium({ artifacts }: ResiumProps) {
         },
       });
     }
-  }, [viewerRef]);
+  }, [viewerRef]); */
 
   /* const handleZoomToTileset = () => {
     if (tilesetRef.current) {
@@ -81,7 +81,7 @@ export default function Resium({ artifacts }: ResiumProps) {
           Entities
         </div>
       </div> */}
-      <Viewer full ref={viewerRef}>
+      <Viewer full /* ref={viewerRef} */>
         {/* {showTileset && (
           <ResiumCesium3DTileset
             ref={tilesetRef}

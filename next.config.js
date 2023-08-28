@@ -17,7 +17,6 @@ const nextConfig = {
       }),
     );
 
-    // Your original configuration
     config.resolve.fallback = { fs: false };
 
     return config;
