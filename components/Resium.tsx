@@ -1,10 +1,6 @@
 import { Cartesian3, Ion, IonResource } from 'cesium';
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  Cesium3DTileset as ResiumCesium3DTileset,
-  Entity,
-  Viewer,
-} from 'resium';
+import { Entity, Viewer } from 'resium';
 import { Artifact } from './api';
 
 require('dotenv').config();
@@ -16,23 +12,22 @@ interface ResiumProps {
 export default function Resium({ artifacts }: ResiumProps) {
   const [showViewer, setShowViewer] = useState(false);
   const viewerRef = useRef<any>(null);
-  const tilesetRef = useRef<any>(null);
+  /* const tilesetRef = useRef<any>(null); */
   const [showTileset, setShowTileset] = useState(true);
   const [showEntities, setShowEntities] = useState(true);
-  const [fetchedData, setFetchedData] = useState<any>(null);
+  /* const [fetchedData, setFetchedData] = useState<any>(null); */
 
   useEffect(() => {
     setShowViewer(true);
     return () => setShowViewer(false);
   }, []);
 
-  useEffect(() => {
-    // Fetch data from the API
+  /* useEffect(() => {
     fetch('/api/cesium')
       .then((response) => response.json())
       .then((data) => setFetchedData(data))
       .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+  }, []); */
 
   useEffect(() => {
     if (viewerRef.current && viewerRef.current.cesiumElement) {
@@ -55,19 +50,19 @@ export default function Resium({ artifacts }: ResiumProps) {
     }
   }, [viewerRef]);
 
-  const handleZoomToTileset = () => {
+  /* const handleZoomToTileset = () => {
     if (tilesetRef.current) {
       viewerRef.current.cesiumElement.zoomTo(tilesetRef.current);
     }
-  };
+  }; */
 
-  const handleZoomToEntity = (entity: any) => {
+  /*  const handleZoomToEntity = (entity: any) => {
     viewerRef.current.cesiumElement.zoomTo(entity);
-  };
+  }; */
 
   return (
     <div>
-      <div className="legend">
+      {/* <div className="legend">
         <div>
           <input
             type="checkbox"
@@ -85,9 +80,9 @@ export default function Resium({ artifacts }: ResiumProps) {
           />
           Entities
         </div>
-      </div>
+      </div> */}
       <Viewer full ref={viewerRef}>
-        {showTileset && (
+        {/* {showTileset && (
           <ResiumCesium3DTileset
             ref={tilesetRef}
             url={IonResource.fromAssetId(2197615)}
@@ -95,7 +90,7 @@ export default function Resium({ artifacts }: ResiumProps) {
               tilesetRef.current = tileset;
             }}
           />
-        )}
+        )} */}
         {showEntities &&
           artifacts &&
           artifacts.map((artifact) => {

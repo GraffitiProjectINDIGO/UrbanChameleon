@@ -1,4 +1,4 @@
-import axios from 'axios';
+/* import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -31,3 +31,4 @@ export default async function handler(
     }
   }
 }
+ */
