@@ -1,5 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 import 'node_modules/react-leaflet-cluster/lib/assets/MarkerCluster.Default.css';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import L, { Icon, point } from 'leaflet';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
@@ -44,6 +46,10 @@ interface MapPaneProps {
 
 const MapPane: React.FC<MapPaneProps> = ({ isOverlayOpen }) => {
   const map = useMap();
+
+  const resetMapView = () => {
+    map.setView([48.217, 16.3727], 14);
+  };
 
   useEffect(() => {
     if (isOverlayOpen) {
@@ -90,7 +96,11 @@ const MapPane: React.FC<MapPaneProps> = ({ isOverlayOpen }) => {
     }
   }, [map]);
 
-  return null;
+  return (
+    <button onClick={resetMapView} className={styles.resetButton}>
+      <FontAwesomeIcon icon={faHome} />
+    </button>
+  );
 };
 
 const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
@@ -141,64 +151,68 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
         isOverlayOpen ? 'disable-pointer-events' : ''
       }`}
     >
-      <MapPane isOverlayOpen={isOverlayOpen} />
-      <LayersControl collapsed={false}>
-        <LayersControl.BaseLayer checked name="Watercolor">
-          <TileLayer
-            attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg"
-          />
-        </LayersControl.BaseLayer>
-        <LayersControl.BaseLayer checked name="ESRI grey">
-          <TileLayer
-            url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-            attribution="Tiles &copy; Esri"
-          />
-        </LayersControl.BaseLayer>
-        <LayersControl.BaseLayer checked name="OpenStreetMap">
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="Tiles"
-          />
-        </LayersControl.BaseLayer>
-        <LayersControl.Overlay checked name="Graffiti marker">
-          <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
-            {artifacts.map((artifact) => {
-              if (artifact.latitude !== null && artifact.longitude !== null) {
-                return (
-                  <Marker
-                    key={artifact.id}
-                    position={[artifact.latitude, artifact.longitude]}
-                    icon={customIcon}
-                  >
-                    <Popup>
-                      <h2 className="text-xl font-bold mb-4 whitespace-nowrap overflow-hidden overflow-ellipsis">
-                        {artifact.title ?? ''}
-                      </h2>
-                      <img
-                        src={artifact.imageUrl}
-                        alt={artifact.title}
-                        className="w-full h-auto rounded-md mb-4"
-                      />
-                      <button
-                        onClick={() => openOverlay(artifact)}
-                        className="bg-gradient-to-r from-e95095 to-7049ba text-white px-4 py-2 rounded-md mx-auto block z-10"
-                      >
-                        Graffito details
-                      </button>
-                    </Popup>
-                  </Marker>
-                );
-              }
-              return null;
-            })}
-          </MarkerClusterGroup>
-        </LayersControl.Overlay>
-      </LayersControl>
-      {isOverlayOpen && selectedGraffito && <Backdrop onClick={closeOverlay} />}
-      {isOverlayOpen && selectedGraffito && (
-        <GraffitoOverlay graffito={selectedGraffito} onClose={closeOverlay} />
-      )}
+      <div className={styles.mapWrapper}>
+        <MapPane isOverlayOpen={isOverlayOpen} />
+        <LayersControl collapsed={false}>
+          <LayersControl.BaseLayer checked name="Watercolor">
+            <TileLayer
+              attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer checked name="ESRI grey">
+            <TileLayer
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+              attribution="Tiles &copy; Esri"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer checked name="OpenStreetMap">
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="Tiles"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.Overlay checked name="Graffiti marker">
+            <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
+              {artifacts.map((artifact) => {
+                if (artifact.latitude !== null && artifact.longitude !== null) {
+                  return (
+                    <Marker
+                      key={artifact.id}
+                      position={[artifact.latitude, artifact.longitude]}
+                      icon={customIcon}
+                    >
+                      <Popup>
+                        <h2 className="text-xl font-bold mb-4 whitespace-nowrap overflow-hidden overflow-ellipsis">
+                          {artifact.title ?? ''}
+                        </h2>
+                        <img
+                          src={artifact.imageUrl}
+                          alt={artifact.title}
+                          className="w-full h-auto rounded-md mb-4"
+                        />
+                        <button
+                          onClick={() => openOverlay(artifact)}
+                          className="bg-gradient-to-r from-e95095 to-7049ba text-white px-4 py-2 rounded-md mx-auto block z-10"
+                        >
+                          Graffito details
+                        </button>
+                      </Popup>
+                    </Marker>
+                  );
+                }
+                return null;
+              })}
+            </MarkerClusterGroup>
+          </LayersControl.Overlay>
+        </LayersControl>
+        {isOverlayOpen && selectedGraffito && (
+          <Backdrop onClick={closeOverlay} />
+        )}
+        {isOverlayOpen && selectedGraffito && (
+          <GraffitoOverlay graffito={selectedGraffito} onClose={closeOverlay} />
+        )}
+      </div>
     </MapContainer>
   );
 };

@@ -9,3 +9,24 @@
 .disable-pointer-events {
   pointer-events: none;
 }
+
+.resetButton {
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  z-index: 1000;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 33px;
+  height: 33px;
+  line-height: 30px;
+  font-size: 16px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
