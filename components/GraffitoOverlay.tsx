@@ -1,7 +1,10 @@
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import { Icon } from 'leaflet';
 import React from 'react';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { Artifact } from '../components/api';
+import styles from './GraffitoOverlay.module.scss';
 
 interface GraffitoOverlayProps {
   graffito: Artifact | null;
@@ -19,28 +22,49 @@ const GraffitoOverlay: React.FC<GraffitoOverlayProps> = ({
 }) => {
   if (!graffito) return null;
 
+  const exportPDF = async () => {
+    const overlay = document.getElementById('graffitoOverlay');
+    if (overlay) {
+      try {
+        // Ensure the overlay has non-zero dimensions
+        if (overlay.clientHeight === 0 || overlay.clientWidth === 0) {
+          throw new Error('Overlay dimensions are zero');
+        }
+
+        const canvas = await html2canvas(overlay, {
+          useCORS: true, // Enable CORS
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+        if (imgData === 'data:,') {
+          throw new Error('Canvas Data URL is empty');
+        }
+
+        const pdf = new jsPDF();
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+        pdf.save(`${graffito?.title}.pdf`);
+      } catch (error) {
+        console.error('Error in PDF generation:', error);
+      }
+    }
+  };
+
   return (
-    <div onClick={(e) => e.stopPropagation()}>
-      <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-2000">
-        <div className="bg-white rounded-lg w-11/12 h-4/5 overflow-y-auto p-4 relative text-black">
-          <div className="bg-gray-200 bg-opacity-50 sticky top-0 p-4 z-10 flex justify-between items-center rounded-lg">
-            <h1 className="text-2xl font-bold mb-0 inline-block">
-              Graffito: {graffito.title}
-            </h1>
-            <button
-              onClick={onClose}
-              className="bg-navbar-gradient text-white px-2 py-2 rounded-full"
-            >
+    <div id="graffitoOverlay">
+      <div onClick={(e) => e.stopPropagation()} className={styles.overlay}>
+        <div className={styles['overlay-content']}>
+          <div className={styles['card-header']}>
+            <h1 className={styles['card-title']}>Graffito: {graffito.title}</h1>
+            <button onClick={onClose} className={styles['close-button']}>
               X
             </button>
           </div>
           <img
             src={graffito.imageUrl}
             alt={graffito.title}
-            className="w-full h-auto rounded-md mb-4 mt-8"
+            className={styles.image}
           />
-
-          <div className="flex mt-8">
+          <div className={styles['description-map-container']}>
             <div className="text-black flex-1">
               <p>
                 <strong>Description:</strong> {graffito.description}
@@ -49,13 +73,13 @@ const GraffitoOverlay: React.FC<GraffitoOverlayProps> = ({
                 <strong>Graffito Type:</strong> {graffito.types}
               </p>
               <p>
-                <strong>Start Date of Visibilty:</strong> {graffito.startDate}
+                <strong>Start Date of Visibility:</strong> {graffito.startDate}
               </p>
               <p>
-                <strong>End Date of Visibilty:</strong> {graffito.endDate}
+                <strong>End Date of Visibility:</strong> {graffito.endDate}
               </p>
               <p>
-                <strong>Colors used:</strong> {graffito.colours}
+                <strong>Colours used:</strong> {graffito.colours}
               </p>
               <p>
                 <strong>Area covered:</strong> {graffito.area}
@@ -67,11 +91,11 @@ const GraffitoOverlay: React.FC<GraffitoOverlayProps> = ({
               )}
             </div>
             {graffito.latitude && graffito.longitude && (
-              <div className="flex-1 mt-4 flex justify-end items-center">
+              <div className={styles['map-container']}>
                 <MapContainer
                   center={[graffito.latitude, graffito.longitude]}
                   zoom={16}
-                  style={{ height: '100px', width: '100px' }}
+                  style={{ height: '100%', width: '100%' }}
                   dragging={false}
                   zoomControl={false}
                   doubleClickZoom={false}
@@ -86,6 +110,12 @@ const GraffitoOverlay: React.FC<GraffitoOverlayProps> = ({
               </div>
             )}
           </div>
+          {/*  <button
+            className="bg-gradient-to-r from-e95095 via-e95095 to-7049ba text-white font-bold place-items-center justify-center py-2 px-4 rounded mt-4"
+            onClick={exportPDF}
+          >
+            Export as PDF
+          </button> */}
         </div>
       </div>
     </div>
