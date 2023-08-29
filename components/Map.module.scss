@@ -30,3 +30,11 @@
   align-items: center;
   text-align: center;
 }
+
+.custom-marker-cluster {
+  z-index: 1000;
+}
+
+.leaflet-fa-icon {
+  z-index: 500;
+}
