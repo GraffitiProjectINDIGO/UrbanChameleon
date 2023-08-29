@@ -13,7 +13,7 @@ const Grid = styled.section`
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
   grid-gap: 20px;
-  background-color: #f6f6f6;
+  background-color: #bababaaf;
   padding: 10px;
   /*
   @media (max-width: 768px) {
