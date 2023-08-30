@@ -79,11 +79,6 @@ const Home: React.FC<HomeProps> = ({ artifacts }) => {
               alt="Chameleon"
               className={styles.chameleonImage}
             />
-            <div className={styles.chameleonText}>
-              URBAN
-              <br />
-              CHAMELEON
-            </div>
           </div>
           <div className={styles.title}>
             <p style={{ fontSize: 30 }}>

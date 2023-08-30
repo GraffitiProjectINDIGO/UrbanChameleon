@@ -65,22 +65,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 40px;
+  margin-top: 70px;
   @media (max-width: 768px) {
-    margin-top: 70px;
+    margin-top: 80px;
   }
 }
 
 .chameleonImage {
-  max-width: 20%;
+  max-width: 50%;
   height: auto;
-}
-
-.chameleonText {
-  font-size: 50px;
-  text-align: left;
-  line-height: 1.2;
 }
 
 // Styles for the text of the Landing page
