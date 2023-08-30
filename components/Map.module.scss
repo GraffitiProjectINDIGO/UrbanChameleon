@@ -38,3 +38,54 @@
 .leaflet-fa-icon {
   z-index: 500;
 }
+
+.timeSlider {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  .slider {
+    width: 300px;
+    appearance: none;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: linear-gradient(to right, #e95095, #7049ba);
+      cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: linear-gradient(to right, #e95095, #7049ba);
+      cursor: pointer;
+    }
+  }
+}
+
+.selected-date-label {
+  font-size: 14px !important;
+  margin-top: 5px;
+  text-align: center;
+  background-color: #ccc !important;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}

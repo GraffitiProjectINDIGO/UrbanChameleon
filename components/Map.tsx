@@ -4,7 +4,7 @@ import { faHome, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import L, { Icon, point } from 'leaflet';
 import dynamic from 'next/dynamic';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import {
   LayersControl,
@@ -29,6 +29,10 @@ interface MapProps {
   artifacts: Artifact[];
 }
 
+const formatDate = (date: Date) => {
+  return date.toISOString().split('T')[0];
+};
+
 // Function to create custom cluster icons
 const createClusterCustomIcon: (cluster: any) => L.DivIcon = (cluster) => {
   return L.divIcon({
@@ -49,6 +53,74 @@ const groupArtifactsByType = (artifacts: Artifact[]) => {
     grouped[type].push(artifact);
   });
   return grouped;
+};
+
+// Function to create a Time Slider
+const TimeSlider: React.FC = () => {
+  const [selectedTime, setSelectedTime] = useState<number>(0);
+  const minTime = new Date('2021-01-01').getTime();
+  const maxTime = new Date('2023-12-31').getTime();
+  const step = 86400000; // 1 day in milliseconds
+
+  const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedTime(Number(event.target.value));
+  };
+
+  const [isMouseDown, setIsMouseDown] = useState(false);
+
+  const handleMouseDown = () => {
+    setIsMouseDown(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsMouseDown(false);
+  };
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLInputElement>) => {
+    if (isMouseDown) {
+      const newTime = new Date(Number(event.currentTarget.value));
+      setSelectedTime(newTime);
+    }
+  };
+
+  const disableMapInteractions = () => {
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+  };
+
+  const enableMapInteractions = () => {
+    map.dragging.enable();
+    map.touchZoom.enable();
+    map.doubleClickZoom.enable();
+    map.scrollWheelZoom.enable();
+  };
+
+  return (
+    <div className={styles.timeSlider}>
+      <input
+        type="range"
+        min={minTime}
+        max={maxTime}
+        step={step}
+        value={selectedTime ? selectedTime.getTime() : minTime}
+        onChange={(e) => {
+          const newTime = new Date(Number(e.target.value));
+          setSelectedTime(newTime);
+        }}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+        className={styles.slider}
+      />
+      {selectedTime && (
+        <div className="selected-date-label">
+          Selected Date: {formatDate(selectedTime)}
+        </div>
+      )}
+    </div>
+  );
 };
 
 interface MapPaneProps {
@@ -116,6 +188,24 @@ const MapPane: React.FC<MapPaneProps> = ({ isOverlayOpen }) => {
 
 const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
   const [markerIcon, setMarkerIcon] = useState<Icon | null>(null);
+  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
+
+  const filteredArtifacts = useMemo(() => {
+    return artifacts.filter((artifact) => {
+      const { startDate, endDate } = artifact;
+      if (selectedTime === null) return true;
+
+      const selectedDateTime = new Date(selectedTime).getTime();
+      const startDateTime = startDate ? new Date(startDate).getTime() : null;
+      const endDateTime = endDate ? new Date(endDate).getTime() : null;
+
+      return (
+        (startDateTime === null || selectedDateTime >= startDateTime) &&
+        (endDateTime === null || selectedDateTime <= endDateTime)
+      );
+    });
+  }, [artifacts, selectedTime]);
+
   const [typeColorMapping, setTypeColorMapping] = useState<{
     [key: string]: string;
   }>({});
@@ -194,7 +284,7 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
         shadowUrl:
           'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
         shadowSize: [41, 41],
-        shadowAnchor: [12, 41],
+        shadowAnchor: [0, 0],
       });
 
       setMarkerIcon(markerIcon);
@@ -216,7 +306,7 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
     setSelectedGraffito(null);
   };
 
-  const groupedArtifacts = groupArtifactsByType(artifacts);
+  const groupedArtifacts = groupArtifactsByType(artifacts, selectedTime);
 
   return (
     <MapContainer
@@ -229,6 +319,7 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
         isOverlayOpen ? 'disable-pointer-events' : ''
       }`}
     >
+      <TimeSlider />
       <div className={styles.mapWrapper}>
         {/* Legend for marker colors */}
         <div className={styles.legend}>

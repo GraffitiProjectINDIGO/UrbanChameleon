@@ -457,6 +457,16 @@ video {
   fill: black;
 }
 
+.selected-date-label {
+  font-size: 12px !important;
+  margin-top: 2px;
+  text-align: center;
+  background-color: #ccc !important;
+  padding: 2px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
 /* Cesium styles */
 
 .cesium-viewer-toolbar button {
