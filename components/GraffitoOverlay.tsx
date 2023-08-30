@@ -47,32 +47,40 @@ const GraffitoOverlay: React.FC<GraffitoOverlayProps> = ({
     captureMap();
   }, []);
 
-  const MyDocument = ({ mapImage }) => (
+  const MyDocument: React.FC<{ mapImage: string | null }> = ({ mapImage }) => (
     <Document>
       <Page size="A4" style={pdfStyles.page}>
         <View style={pdfStyles.section}>
-          <Text style={pdfStyles.cardHeader}>Graffito: {graffito.title}</Text>
-          <Image src={graffito.imageUrl} style={pdfStyles.image} />
-          <Text style={pdfStyles.cardBody}>
-            Description: {graffito.description}
-          </Text>
-          <Text style={pdfStyles.cardBody}>
-            Graffito Type: {graffito.types}
-          </Text>
-          <Text style={pdfStyles.cardBody}>
-            Start Date of Visibility: {graffito.startDate}
-          </Text>
-          <Text style={pdfStyles.cardBody}>
-            End Date of Visibility: {graffito.endDate}
-          </Text>
-          <Text style={pdfStyles.cardBody}>
-            Colours used: {graffito.colours}
-          </Text>
-          <Text style={pdfStyles.cardBody}>Area covered: {graffito.area}</Text>
-          <Text style={pdfStyles.cardBody}>
-            Graffitist: {graffito.graffitist}
-          </Text>
-          {mapImage && <Image src={mapImage} />}{' '}
+          {graffito && (
+            <>
+              <Text style={pdfStyles.cardHeader}>
+                Graffito: {graffito.title}
+              </Text>
+              <Image src={graffito.imageUrl} style={pdfStyles.image} />
+              <Text style={pdfStyles.cardBody}>
+                Description: {graffito.description}
+              </Text>
+              <Text style={pdfStyles.cardBody}>
+                Graffito Type: {graffito.types}
+              </Text>
+              <Text style={pdfStyles.cardBody}>
+                Start Date of Visibility: {graffito.startDate}
+              </Text>
+              <Text style={pdfStyles.cardBody}>
+                End Date of Visibility: {graffito.endDate}
+              </Text>
+              <Text style={pdfStyles.cardBody}>
+                Colours used: {graffito.colours}
+              </Text>
+              <Text style={pdfStyles.cardBody}>
+                Area covered: {graffito.area}
+              </Text>
+              <Text style={pdfStyles.cardBody}>
+                Graffitist: {graffito.graffitist}
+              </Text>
+              {mapImage && <Image src={mapImage} />}{' '}
+            </>
+          )}
         </View>
         <View style={pdfStyles.logoContainer}>
           <Image src={'data:image/png;base64,...'} style={pdfStyles.logo} />

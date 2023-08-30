@@ -55,15 +55,40 @@ const groupArtifactsByType = (artifacts: Artifact[]) => {
   return grouped;
 };
 
+const useMapInteractions = () => {
+  const map = useMap();
+
+  const disableMapInteractions = () => {
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+  };
+
+  const enableMapInteractions = () => {
+    map.dragging.enable();
+    map.touchZoom.enable();
+    map.doubleClickZoom.enable();
+    map.scrollWheelZoom.enable();
+  };
+
+  return { disableMapInteractions, enableMapInteractions };
+};
+
 // Function to create a Time Slider
 const TimeSlider: React.FC = () => {
-  const [selectedTime, setSelectedTime] = useState<number>(0);
+  const { disableMapInteractions, enableMapInteractions } =
+    useMapInteractions();
+
+  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
   const minTime = new Date('2021-01-01').getTime();
   const maxTime = new Date('2023-12-31').getTime();
   const step = 86400000; // 1 day in milliseconds
+  const sliderValue = selectedTime ? selectedTime.getTime() : minTime;
 
   const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedTime(Number(event.target.value));
+    const newTimeValue = new Date(Number(event.target.value));
+    setSelectedTime(newTimeValue);
   };
 
   const [isMouseDown, setIsMouseDown] = useState(false);
@@ -78,23 +103,9 @@ const TimeSlider: React.FC = () => {
 
   const handleMouseMove = (event: React.MouseEvent<HTMLInputElement>) => {
     if (isMouseDown) {
-      const newTime = new Date(Number(event.currentTarget.value));
-      setSelectedTime(newTime);
+      const newTimeValue = new Date(Number(event.currentTarget.value));
+      setSelectedTime(newTimeValue);
     }
-  };
-
-  const disableMapInteractions = () => {
-    map.dragging.disable();
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-  };
-
-  const enableMapInteractions = () => {
-    map.dragging.enable();
-    map.touchZoom.enable();
-    map.doubleClickZoom.enable();
-    map.scrollWheelZoom.enable();
   };
 
   return (
@@ -306,7 +317,7 @@ const Map: React.FC<MapProps> = ({ artifacts = [] }) => {
     setSelectedGraffito(null);
   };
 
-  const groupedArtifacts = groupArtifactsByType(artifacts, selectedTime);
+  const groupedArtifacts = groupArtifactsByType(artifacts);
 
   return (
     <MapContainer
